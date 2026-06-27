@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Raven Platforms Inc. — Websites &amp; platforms that win customers</title>
 <meta name="description" content="Raven Platforms designs and engineers fast, modern websites, web apps and digital platforms for ambitious businesses. Toronto, Canada.">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -100,7 +102,11 @@
   .form input::placeholder,.form textarea::placeholder{color:#71717a;}
   .btn-light{font:600 15px var(--grotesk);color:var(--ink);background:#fff;border:none;padding:16px;
     cursor:pointer;margin-top:10px;transition:background .2s,color .2s;}
-  .btn-light:hover{background:var(--accent);color:#fff;}
+  .btn-light:hover:not(:disabled){background:var(--accent);color:#fff;}
+  .btn-light:disabled{opacity:.65;cursor:not-allowed;}
+  .form-status{font-size:14px;line-height:1.5;margin:4px 0 0;min-height:1.25em;}
+  .form-status.ok{color:#86efac;}
+  .form-status.err{color:#fca5a5;}
 
   /* footer */
   .footer{padding:28px var(--pad);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
@@ -187,13 +193,14 @@
       <div>
         <h2>Let's build the thing your business needs.</h2>
         <p>Tell us what you're working on. We'll reply within one business day.</p>
-        <a class="email" href="/cdn-cgi/l/email-protection#087b69646d7b4867667a697e6d66266b69"><span class="__cf_email__" data-cfemail="8cffede0e9ffcce3e2feedfae9e2a2efed">[email&#160;protected]</span></a>
+        <a class="email" href="mailto:andres@onraven.ca">andres@onraven.ca</a>
       </div>
       <form class="form" id="contactForm">
-        <input id="rp-name" name="name" placeholder="Your name" autocomplete="name">
-        <input id="rp-email" name="email" type="email" placeholder="Email address" autocomplete="email">
-        <textarea id="rp-msg" name="message" rows="3" placeholder="What do you need built?"></textarea>
-        <button class="btn-light" type="submit">Start your project &rarr;</button>
+        <input id="rp-name" name="name" placeholder="Your name" autocomplete="name" required>
+        <input id="rp-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <textarea id="rp-msg" name="message" rows="3" placeholder="What do you need built?" required></textarea>
+        <button class="btn-light" id="contactSubmit" type="submit">Start your project &rarr;</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -206,7 +213,7 @@
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   (function () {
     // --- trusted-by marquee ---
     var names = [
@@ -237,16 +244,62 @@
       reveals.forEach(function (el) { el.classList.add('in'); });
     }
 
-    // --- contact form -> email ---
+    // --- contact form -> Resend API ---
     var form = document.getElementById('contactForm');
+    var submitBtn = document.getElementById('contactSubmit');
+    var statusEl = document.getElementById('formStatus');
+    var contactApi = document.querySelector('meta[name="contact-api"]');
+    var apiUrl = (contactApi && contactApi.content) || '/api/contact';
+
+    function setStatus(text, type) {
+      if (!statusEl) return;
+      statusEl.textContent = text;
+      statusEl.className = 'form-status' + (type ? ' ' + type : '');
+    }
+
     if (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var val = function (id) { var n = document.getElementById(id); return n ? n.value.trim() : ''; };
-        var name = val('rp-name'), email = val('rp-email'), msg = val('rp-msg');
-        var subject = encodeURIComponent('New project enquiry' + (name ? ' \u2014 ' + name : ''));
-        var body = encodeURIComponent((msg || 'Hi Raven Platforms,') + '\n\n\u2014 ' + name + (email ? ' (' + email + ')' : ''));
-        window.location.href = 'mailto:sales@onraven.ca?subject=' + subject + '&body=' + body;
+        var name = val('rp-name');
+        var email = val('rp-email');
+        var msg = val('rp-msg');
+
+        if (!name || !email || !msg) {
+          setStatus('Please fill in all fields.', 'err');
+          return;
+        }
+
+        setStatus('Sending…', '');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+        }
+
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, email: email, message: msg })
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+              if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+              return data;
+            });
+          })
+          .then(function () {
+            form.reset();
+            setStatus('Message sent — check your inbox for a confirmation.', 'ok');
+          })
+          .catch(function (err) {
+            setStatus(err.message || 'Unable to send. Email us at andres@onraven.ca.', 'err');
+          })
+          .finally(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Start your project \u2192';
+            }
+          });
       });
     }
   })();
