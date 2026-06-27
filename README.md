@@ -39,3 +39,21 @@ npx vercel dev
 ```
 
 Open the URL Vercel prints (usually `http://localhost:3000`).
+
+## SEO & AI search
+
+Static files included for discoverability:
+
+- `robots.txt` — crawl rules + sitemap reference (AI bots allowed)
+- `sitemap.xml` — URL list for search engines
+- `llms.txt` — plain-text summary for AI assistants and answer engines
+- `site.webmanifest` — PWA metadata
+
+If you connect a **custom domain**, update the base URL in:
+
+- `index.html` (canonical, Open Graph, JSON-LD)
+- `robots.txt` (Sitemap line)
+- `sitemap.xml`
+- `llms.txt`
+
+Then submit the sitemap in [Google Search Console](https://search.google.com/search-console).

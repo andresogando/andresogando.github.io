@@ -1,0 +1,46 @@
+# Raven Platforms Inc.
+
+> Toronto-based digital product studio building websites, web apps, mobile apps, and platforms for ambitious businesses across North America and the Caribbean.
+
+## Canonical URL
+https://andresogando.github.io/ravenplatforms.github.io/
+
+## Summary
+Raven Platforms Inc. designs and engineers fast, modern digital products — from marketing websites to full web applications. The company is registered in Toronto, Ontario, Canada, with 10+ years in business and 630+ projects delivered across 25 countries.
+
+## Services
+- Custom Websites — conversion-focused marketing sites built from scratch
+- Web Apps & Platforms — dashboards, portals, and SaaS products
+- E-Commerce — online storefronts engineered to sell
+- Mobile Apps — iOS and Android applications
+- SEO & Performance — technical SEO and site speed optimization
+- Branding & Design — identity and interface design
+- Automation & Integrations — workflow automation and API integrations
+- Maintenance & Support — ongoing security, hosting, and product support
+
+## Location
+Toronto, Ontario, Canada (CA-ON)
+
+## Service areas
+Canada, United States, Caribbean
+
+## Contact
+- Email: contact@onraven.ca
+- Website contact form: https://andresogando.github.io/ravenplatforms.github.io/#contact
+
+## Frequently asked questions
+
+### What does Raven Platforms do?
+Raven Platforms Inc. is a digital product studio that builds custom websites, web applications, mobile apps, e-commerce stores, and automation systems.
+
+### Where is Raven Platforms located?
+Toronto, Ontario, Canada.
+
+### How do I contact Raven Platforms?
+Email contact@onraven.ca or use the contact form on the website.
+
+## Notable clients
+OnRaven, iRobcx, AlgoLabs, StreamVault, Cadillac of Newport, RMJ Transportation, HM Management, Coldwell Banker, WeMove RD, Bohemian Cap Cana, CareerSafe, OG Corp, Tacoma Pharmacy, Honda Dealer Affiliates, Acura Dealer Affiliates, HVAC Partners, Hospitality Groups
+
+## Sitemap
+https://andresogando.github.io/ravenplatforms.github.io/sitemap.xml

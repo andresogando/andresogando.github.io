@@ -1,0 +1,28 @@
+# Raven Platforms Inc.
+# Update the Sitemap URL if you connect a custom domain.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://andresogando.github.io/ravenplatforms.github.io/sitemap.xml

@@ -1,0 +1,18 @@
+{
+  "name": "Raven Platforms Inc.",
+  "short_name": "Raven Platforms",
+  "description": "Websites and digital platforms that win customers. Toronto-based web design, web apps, mobile apps, and SEO.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "lang": "en-CA",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
