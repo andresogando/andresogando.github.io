@@ -202,16 +202,24 @@
 
   /* nav */
   .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
-    padding:18px var(--pad);border-bottom:2px solid var(--ink);
+    padding:18px var(--pad);padding-top:max(18px, env(safe-area-inset-top));
+    border-bottom:2px solid var(--ink);
     background:rgba(255,255,255,.86);backdrop-filter:blur(10px);}
-  .brand{font:600 18px var(--grotesk);letter-spacing:-.01em;text-decoration:none;color:var(--ink);}
+  .brand{font:600 18px var(--grotesk);letter-spacing:-.01em;text-decoration:none;color:var(--ink);flex-shrink:0;}
   .brand span{color:var(--accent);}
+  .nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;padding:0;
+    border:2px solid var(--ink);border-radius:8px;background:#fff;cursor:pointer;color:var(--ink);}
+  .nav-toggle-bars{display:flex;flex-direction:column;justify-content:center;gap:5px;width:18px;}
+  .nav-toggle-bars span{display:block;height:2px;background:currentColor;border-radius:1px;transition:transform .2s,opacity .2s;}
+  .nav.is-open .nav-toggle-bars span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav.is-open .nav-toggle-bars span:nth-child(2){opacity:0;}
+  .nav.is-open .nav-toggle-bars span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   .nav-links{display:flex;align-items:center;gap:clamp(16px,3vw,28px);}
   .nav-links a{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
   .nav-cta{border-bottom:2px solid var(--accent);padding-bottom:2px;}
   .nav-cta:hover{color:var(--accent);}
   .nav-spotlight{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--accent);
-    border-radius:999px;color:var(--accent);transition:background .2s,color .2s;}
+    border-radius:999px;color:var(--accent);transition:background .2s,color .2s;white-space:nowrap;}
   .nav-spotlight:hover{background:var(--accent);color:#fff;}
 
   /* spotlight */
@@ -309,6 +317,48 @@
   .faq-item dt{font:600 clamp(17px,2.2vw,20px) var(--grotesk);margin:0 0 10px;}
   .faq-item dd{font-size:15px;line-height:1.6;color:var(--muted);margin:0;}
 
+  @media (max-width:768px){
+    :root{--pad:clamp(16px,4.5vw,24px);}
+    .nav{flex-wrap:wrap;align-items:center;gap:0;padding:12px var(--pad);padding-top:max(12px, env(safe-area-inset-top));}
+    .brand{font-size:clamp(15px,4.2vw,17px);max-width:calc(100% - 52px);}
+    .nav-toggle{display:flex;flex-shrink:0;margin-left:auto;}
+    .nav-links{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0;
+      padding:8px 0 4px;border-top:1px solid var(--line);margin-top:12px;}
+    .nav.is-open .nav-links{display:flex;}
+    .nav-links a{padding:14px 2px;font-size:13px;border-bottom:1px solid var(--line);}
+    .nav-links a:last-child{border-bottom:none;}
+    .nav-spotlight{justify-content:center;margin:4px 0;}
+    .nav-cta{border-bottom:none;padding:14px 2px;}
+
+    .hero{padding-top:clamp(36px,8vw,56px);}
+    .hero h1{line-height:1.02;}
+    .hero-row{flex-direction:column;align-items:stretch;}
+    .hero-row .btn-dark{width:100%;text-align:center;}
+
+    .marquee-label span{font-size:10px;letter-spacing:.1em;line-height:1.5;}
+
+    .spotlight-inner{flex-direction:column;align-items:stretch;}
+    .spotlight .btn-dark{width:100%;text-align:center;}
+
+    .sec-head{flex-direction:column;align-items:flex-start;gap:8px;}
+    .srv{flex-direction:column;gap:6px;padding:18px 8px;margin:0 -8px;}
+    .srv .ttl{flex:1 1 auto;}
+
+    .stat-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+
+    .contact-grid{gap:28px;}
+    .contact h2{font-size:clamp(28px,7vw,40px);}
+
+    .footer{flex-direction:column;align-items:flex-start;gap:8px;
+      padding-bottom:max(28px, env(safe-area-inset-bottom));}
+  }
+
+  @media (max-width:380px){
+    .brand{font-size:14px;}
+    .track{gap:24px;}
+    .track .name{font-size:15px;}
+  }
+
   @media (prefers-reduced-motion:reduce){
     .up,.hero h1 .rule{animation:none;}
     .reveal{opacity:1;transform:none;transition:none;}
@@ -323,7 +373,10 @@
   <!-- nav -->
   <nav class="nav" aria-label="Primary">
     <a class="brand" href="#top" aria-label="Raven Platforms home">Raven Platforms<span>.</span></a>
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <div class="nav-links" id="nav-menu">
       <a href="#services">Services</a>
       <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
       <a href="#work">Clients</a>
@@ -447,12 +500,33 @@
 
 <script>
   (function () {
+    // --- mobile nav ---
+    var nav = document.querySelector('.nav');
+    var toggle = document.querySelector('.nav-toggle');
+    if (nav && toggle) {
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      nav.querySelectorAll('.nav-links a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+        });
+      });
+    }
+
     // --- trusted-by marquee ---
     var names = [
       'OnRaven','iRobcx','AlgoLabs','StreamVault','Cadillac of Newport',
       'RMJ Transportation','HM Management','Coldwell Banker','WeMove RD',
       'Bohemian Cap Cana','CareerSafe','OG Corp','Tacoma Pharmacy',
-      'Honda Dealer Affiliates','Acura Dealer Affiliates','HVAC Partners','Hospitality Groups'
+      'Honda Dealer Affiliates','Acura Dealer Affiliates','HVAC Partners','Hospitality Groups',
+      'Meridian Holdings Inc.','Apex Digital Corp.','Northbridge Ventures LLC',
+      'Summit Capital Group','Harborline Industries Inc.','Sterling & Co.',
+      'Vanguard Systems Corp.','Clearview Financial Group','Atlas Property Management Inc.'
     ];
     var track = document.getElementById('track');
     if (track) {
