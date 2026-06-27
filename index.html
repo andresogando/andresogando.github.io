@@ -20,6 +20,8 @@
 <meta name="ICBM" content="43.6532, -79.3832">
 <link rel="alternate" hreflang="en-CA" href="https://andresogando.github.io/ravenplatforms.github.io/">
 <link rel="alternate" hreflang="en" href="https://andresogando.github.io/ravenplatforms.github.io/">
+<link rel="alternate" hreflang="es-CA" href="https://andresogando.github.io/ravenplatforms.github.io/?lang=es">
+<link rel="alternate" hreflang="es" href="https://andresogando.github.io/ravenplatforms.github.io/?lang=es">
 <link rel="alternate" hreflang="x-default" href="https://andresogando.github.io/ravenplatforms.github.io/">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="favicon.png">
@@ -221,6 +223,10 @@
   .nav-spotlight{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--accent);
     border-radius:999px;color:var(--accent);transition:background .2s,color .2s;white-space:nowrap;}
   .nav-spotlight:hover{background:var(--accent);color:#fff;}
+  .lang-toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex-shrink:0;}
+  .lang-btn{font:500 11px var(--mono);letter-spacing:.04em;padding:6px 10px;border:none;background:transparent;cursor:pointer;color:var(--muted);min-width:36px;}
+  .lang-btn.active{background:var(--ink);color:#fff;}
+  .lang-btn:hover:not(.active){color:var(--ink);}
 
   /* spotlight */
   .spotlight{padding:clamp(28px,4vw,36px) var(--pad);border-top:2px solid var(--ink);background:#f7f4fd;}
@@ -329,6 +335,7 @@
     .nav-links a:last-child{border-bottom:none;}
     .nav-spotlight{justify-content:center;margin:4px 0;}
     .nav-cta{border-bottom:none;padding:14px 2px;}
+    .lang-toggle{align-self:flex-start;margin:8px 0 4px;}
 
     .hero{padding-top:clamp(36px,8vw,56px);}
     .hero h1{line-height:1.02;}
@@ -367,37 +374,41 @@
 </style>
 </head>
 <body>
-<a class="sr-only" href="#main">Skip to main content</a>
+<a class="sr-only" href="#main" data-i18n="a11y.skip">Skip to main content</a>
 <div class="wrap">
 
   <!-- nav -->
   <nav class="nav" aria-label="Primary">
-    <a class="brand" href="#top" aria-label="Raven Platforms home">Raven Platforms<span>.</span></a>
-    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+    <a class="brand" href="#top" data-i18n-aria="a11y.brandHome">Raven Platforms<span>.</span></a>
+    <button class="nav-toggle" type="button" data-i18n-aria="a11y.openMenu" aria-expanded="false" aria-controls="nav-menu">
       <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
     <div class="nav-links" id="nav-menu">
-      <a href="#services">Services</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
       <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
-      <a href="#work">Clients</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-cta" href="#contact">Start &rarr;</a>
+      <a href="#work" data-i18n="nav.clients">Clients</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <div class="lang-toggle" role="group" data-i18n-aria="a11y.language">
+        <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="nav-cta" href="#contact" data-i18n="nav.start">Start &rarr;</a>
     </div>
   </nav>
 
   <main id="main">
   <!-- hero -->
   <header id="top" class="hero">
-    <h1 class="up d1">We build websites &amp; platforms that <em>win customers</em><span class="rule"></span></h1>
+    <h1 class="up d1" data-i18n-html="hero.title">We build websites &amp; platforms that <em>win customers</em><span class="rule"></span></h1>
     <div class="hero-row">
-      <p class="up d2">Raven Platforms designs and engineers fast, modern digital products for ambitious businesses — from marketing sites to full web apps.</p>
-      <a class="btn-dark up d3" href="#contact">Start your project &rarr;</a>
+      <p class="up d2" data-i18n="hero.desc">Raven Platforms designs and engineers fast, modern digital products for ambitious businesses — from marketing sites to full web apps.</p>
+      <a class="btn-dark up d3" href="#contact" data-i18n="hero.cta">Start your project &rarr;</a>
     </div>
   </header>
 
   <!-- trusted by -->
   <section id="work" class="marquee-sec" aria-labelledby="clients-heading">
-    <div class="marquee-label"><h2 id="clients-heading" class="sr-only">Clients</h2><span>Trusted by teams across North America &amp; the Caribbean</span></div>
+    <div class="marquee-label"><h2 id="clients-heading" class="sr-only" data-i18n="marquee.srTitle">Clients</h2><span data-i18n="marquee.label">Trusted by teams across North America &amp; the Caribbean</span></div>
     <div class="marquee">
       <div class="track" id="track">
         <!-- names injected once, then duplicated by JS for a seamless loop -->
@@ -409,63 +420,63 @@
   <section class="spotlight reveal" aria-labelledby="spotlight-heading">
     <div class="spotlight-inner">
       <div>
-        <span class="spotlight-tag">Spotlight product</span>
+        <span class="spotlight-tag" data-i18n="spotlight.tag">Spotlight product</span>
         <h2 id="spotlight-heading">OnRaven</h2>
-        <p>Our AI-powered customer communication platform — web chat, messaging, and engagement tools built for modern businesses.</p>
+        <p data-i18n="spotlight.desc">Our AI-powered customer communication platform — web chat, messaging, and engagement tools built for modern businesses.</p>
       </div>
-      <a class="btn-dark" href="https://onraven.com" target="_blank" rel="noopener noreferrer">Explore OnRaven &nearr;</a>
+      <a class="btn-dark" href="https://onraven.com" target="_blank" rel="noopener noreferrer" data-i18n="spotlight.cta">Explore OnRaven &nearr;</a>
     </div>
   </section>
 
   <!-- services -->
   <section id="services" class="section" aria-labelledby="services-heading">
     <div class="sec-head reveal">
-      <h2 id="services-heading">What we do</h2>
-      <span class="tag">8 capabilities &middot; one team</span>
+      <h2 id="services-heading" data-i18n="services.title">What we do</h2>
+      <span class="tag" data-i18n="services.tag">8 capabilities &middot; one team</span>
     </div>
     <div>
-      <div class="srv reveal"><span class="num">01</span><span class="ttl">Custom Websites</span><span class="desc">Conversion-focused marketing sites, designed and built from scratch.</span></div>
-      <div class="srv reveal"><span class="num">02</span><span class="ttl">Web Apps &amp; Platforms</span><span class="desc">Dashboards, portals and SaaS products that scale with you.</span></div>
-      <div class="srv reveal"><span class="num">03</span><span class="ttl">E-Commerce</span><span class="desc">Storefronts engineered to sell and simple to manage.</span></div>
-      <div class="srv reveal"><span class="num">04</span><span class="ttl">Mobile Apps</span><span class="desc">iOS and Android experiences your customers keep using.</span></div>
-      <div class="srv reveal"><span class="num">05</span><span class="ttl">SEO &amp; Performance</span><span class="desc">Speed and search visibility that compound over time.</span></div>
-      <div class="srv reveal"><span class="num">06</span><span class="ttl">Branding &amp; Design</span><span class="desc">Identity and interfaces that look the part.</span></div>
-      <div class="srv reveal"><span class="num">07</span><span class="ttl">Automation &amp; Integrations</span><span class="desc">Connect your tools and remove the busywork.</span></div>
-      <div class="srv reveal"><span class="num">08</span><span class="ttl">Maintenance &amp; Support</span><span class="desc">We keep everything fast, secure and online.</span></div>
+      <div class="srv reveal"><span class="num">01</span><span class="ttl" data-i18n="services.s1.title">Custom Websites</span><span class="desc" data-i18n="services.s1.desc">Conversion-focused marketing sites, designed and built from scratch.</span></div>
+      <div class="srv reveal"><span class="num">02</span><span class="ttl" data-i18n="services.s2.title">Web Apps &amp; Platforms</span><span class="desc" data-i18n="services.s2.desc">Dashboards, portals and SaaS products that scale with you.</span></div>
+      <div class="srv reveal"><span class="num">03</span><span class="ttl" data-i18n="services.s3.title">E-Commerce</span><span class="desc" data-i18n="services.s3.desc">Storefronts engineered to sell and simple to manage.</span></div>
+      <div class="srv reveal"><span class="num">04</span><span class="ttl" data-i18n="services.s4.title">Mobile Apps</span><span class="desc" data-i18n="services.s4.desc">iOS and Android experiences your customers keep using.</span></div>
+      <div class="srv reveal"><span class="num">05</span><span class="ttl" data-i18n="services.s5.title">SEO &amp; Performance</span><span class="desc" data-i18n="services.s5.desc">Speed and search visibility that compound over time.</span></div>
+      <div class="srv reveal"><span class="num">06</span><span class="ttl" data-i18n="services.s6.title">Branding &amp; Design</span><span class="desc" data-i18n="services.s6.desc">Identity and interfaces that look the part.</span></div>
+      <div class="srv reveal"><span class="num">07</span><span class="ttl" data-i18n="services.s7.title">Automation &amp; Integrations</span><span class="desc" data-i18n="services.s7.desc">Connect your tools and remove the busywork.</span></div>
+      <div class="srv reveal"><span class="num">08</span><span class="ttl" data-i18n="services.s8.title">Maintenance &amp; Support</span><span class="desc" data-i18n="services.s8.desc">We keep everything fast, secure and online.</span></div>
     </div>
   </section>
 
   <!-- stats -->
-  <section class="stats reveal" aria-label="Company highlights">
+  <section class="stats reveal" data-i18n-aria="stats.label">
     <div class="stat-grid">
-      <div class="stat"><div class="big">10+</div><div class="lbl">Years in business</div></div>
-      <div class="stat"><div class="big">630+</div><div class="lbl">Projects delivered</div></div>
-      <div class="stat"><div class="big">14</div><div class="lbl">Industries served</div></div>
-      <div class="stat"><div class="big">25</div><div class="lbl">Countries served</div></div>
+      <div class="stat"><div class="big">10+</div><div class="lbl" data-i18n="stats.years">Years in business</div></div>
+      <div class="stat"><div class="big">630+</div><div class="lbl" data-i18n="stats.projects">Projects delivered</div></div>
+      <div class="stat"><div class="big">14</div><div class="lbl" data-i18n="stats.industries">Industries served</div></div>
+      <div class="stat"><div class="big">25</div><div class="lbl" data-i18n="stats.countries">Countries served</div></div>
     </div>
   </section>
 
   <!-- faq -->
   <section id="faq" class="section" aria-labelledby="faq-heading">
     <div class="sec-head reveal">
-      <h2 id="faq-heading">Frequently asked questions</h2>
+      <h2 id="faq-heading" data-i18n="faq.title">Frequently asked questions</h2>
     </div>
     <dl class="faq-list">
       <div class="faq-item reveal">
-        <dt>What does Raven Platforms do?</dt>
-        <dd>We are a Toronto-based digital product studio. We design and build custom websites, web apps, mobile apps, e-commerce stores, and automation systems for businesses across North America and the Caribbean.</dd>
+        <dt data-i18n="faq.q1">What does Raven Platforms do?</dt>
+        <dd data-i18n="faq.a1">We are a Toronto-based digital product studio. We design and build custom websites, web apps, mobile apps, e-commerce stores, and automation systems for businesses across North America and the Caribbean.</dd>
       </div>
       <div class="faq-item reveal">
-        <dt>Where is Raven Platforms located?</dt>
-        <dd>Raven Platforms Inc. is registered in Toronto, Ontario, Canada. We serve clients in Canada, the United States, and the Caribbean.</dd>
+        <dt data-i18n="faq.q2">Where is Raven Platforms located?</dt>
+        <dd data-i18n="faq.a2">Raven Platforms Inc. is registered in Toronto, Ontario, Canada. We serve clients in Canada, the United States, and the Caribbean.</dd>
       </div>
       <div class="faq-item reveal">
-        <dt>What services do you offer?</dt>
-        <dd>Custom websites, web apps and SaaS platforms, e-commerce, iOS and Android mobile apps, SEO and performance, branding and design, automation and integrations, and ongoing maintenance and support.</dd>
+        <dt data-i18n="faq.q3">What services do you offer?</dt>
+        <dd data-i18n="faq.a3">Custom websites, web apps and SaaS platforms, e-commerce, iOS and Android mobile apps, SEO and performance, branding and design, automation and integrations, and ongoing maintenance and support.</dd>
       </div>
       <div class="faq-item reveal">
-        <dt>How do I start a project?</dt>
-        <dd>Email <a href="mailto:contact@onraven.ca">contact@onraven.ca</a> or use the contact form below. We typically reply within one business day.</dd>
+        <dt data-i18n="faq.q4">How do I start a project?</dt>
+        <dd data-i18n-html="faq.a4">Email <a href="mailto:contact@onraven.ca">contact@onraven.ca</a> or use the contact form below. We typically reply within one business day.</dd>
       </div>
     </dl>
   </section>
@@ -474,15 +485,15 @@
   <section id="contact" class="contact" aria-labelledby="contact-heading">
     <div class="contact-grid reveal">
       <div>
-        <h2 id="contact-heading">Let's build the thing your business needs.</h2>
-        <p>Tell us what you're working on. We'll reply within one business day.</p>
+        <h2 id="contact-heading" data-i18n="contact.title">Let's build the thing your business needs.</h2>
+        <p data-i18n="contact.desc">Tell us what you're working on. We'll reply within one business day.</p>
         <a class="email" href="mailto:contact@onraven.ca">contact@onraven.ca</a>
       </div>
       <form class="form" id="contactForm">
-        <input id="rp-name" name="name" placeholder="Your name" autocomplete="name" required>
-        <input id="rp-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-        <textarea id="rp-msg" name="message" rows="3" placeholder="What do you need built?" required></textarea>
-        <button class="btn-light" id="contactSubmit" type="submit">Start your project &rarr;</button>
+        <input id="rp-name" name="name" data-i18n-placeholder="contact.namePh" placeholder="Your name" autocomplete="name" required>
+        <input id="rp-email" name="email" type="email" data-i18n-placeholder="contact.emailPh" placeholder="Email address" autocomplete="email" required>
+        <textarea id="rp-msg" name="message" rows="3" data-i18n-placeholder="contact.msgPh" placeholder="What do you need built?" required></textarea>
+        <button class="btn-light" id="contactSubmit" type="submit" data-i18n="contact.submit">Start your project &rarr;</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -492,7 +503,7 @@
 
   <!-- footer -->
   <footer class="footer">
-    <span>Raven Platforms Inc. &middot; Registered in Toronto, Canada</span>
+    <span data-i18n="footer.line1">Raven Platforms Inc. &middot; Registered in Toronto, Canada</span>
     <span>&copy; 2026</span>
   </footer>
 
@@ -500,6 +511,212 @@
 
 <script>
   (function () {
+    var i18n = {
+      en: {
+        'meta.title': 'Raven Platforms Inc. — Websites & Platforms That Win Customers | Toronto, Canada',
+        'meta.description': 'Raven Platforms Inc. is a Toronto-based digital product studio. We design and build custom websites, web apps, mobile apps, e-commerce, SEO, and automation for businesses across North America and the Caribbean.',
+        'a11y.skip': 'Skip to main content',
+        'a11y.brandHome': 'Raven Platforms home',
+        'a11y.openMenu': 'Open menu',
+        'a11y.closeMenu': 'Close menu',
+        'a11y.language': 'Language',
+        'nav.services': 'Services',
+        'nav.clients': 'Clients',
+        'nav.faq': 'FAQ',
+        'nav.start': 'Start \u2192',
+        'hero.title': 'We build websites & platforms that <em>win customers</em><span class="rule"></span>',
+        'hero.desc': 'Raven Platforms designs and engineers fast, modern digital products for ambitious businesses \u2014 from marketing sites to full web apps.',
+        'hero.cta': 'Start your project \u2192',
+        'marquee.srTitle': 'Clients',
+        'marquee.label': 'Trusted by teams across North America & the Caribbean',
+        'spotlight.tag': 'Spotlight product',
+        'spotlight.desc': 'Our AI-powered customer communication platform \u2014 web chat, messaging, and engagement tools built for modern businesses.',
+        'spotlight.cta': 'Explore OnRaven \u2197',
+        'services.title': 'What we do',
+        'services.tag': '8 capabilities \u00b7 one team',
+        'services.s1.title': 'Custom Websites',
+        'services.s1.desc': 'Conversion-focused marketing sites, designed and built from scratch.',
+        'services.s2.title': 'Web Apps & Platforms',
+        'services.s2.desc': 'Dashboards, portals and SaaS products that scale with you.',
+        'services.s3.title': 'E-Commerce',
+        'services.s3.desc': 'Storefronts engineered to sell and simple to manage.',
+        'services.s4.title': 'Mobile Apps',
+        'services.s4.desc': 'iOS and Android experiences your customers keep using.',
+        'services.s5.title': 'SEO & Performance',
+        'services.s5.desc': 'Speed and search visibility that compound over time.',
+        'services.s6.title': 'Branding & Design',
+        'services.s6.desc': 'Identity and interfaces that look the part.',
+        'services.s7.title': 'Automation & Integrations',
+        'services.s7.desc': 'Connect your tools and remove the busywork.',
+        'services.s8.title': 'Maintenance & Support',
+        'services.s8.desc': 'We keep everything fast, secure and online.',
+        'stats.label': 'Company highlights',
+        'stats.years': 'Years in business',
+        'stats.projects': 'Projects delivered',
+        'stats.industries': 'Industries served',
+        'stats.countries': 'Countries served',
+        'faq.title': 'Frequently asked questions',
+        'faq.q1': 'What does Raven Platforms do?',
+        'faq.a1': 'We are a Toronto-based digital product studio. We design and build custom websites, web apps, mobile apps, e-commerce stores, and automation systems for businesses across North America and the Caribbean.',
+        'faq.q2': 'Where is Raven Platforms located?',
+        'faq.a2': 'Raven Platforms Inc. is registered in Toronto, Ontario, Canada. We serve clients in Canada, the United States, and the Caribbean.',
+        'faq.q3': 'What services do you offer?',
+        'faq.a3': 'Custom websites, web apps and SaaS platforms, e-commerce, iOS and Android mobile apps, SEO and performance, branding and design, automation and integrations, and ongoing maintenance and support.',
+        'faq.q4': 'How do I start a project?',
+        'faq.a4': 'Email <a href="mailto:contact@onraven.ca">contact@onraven.ca</a> or use the contact form below. We typically reply within one business day.',
+        'contact.title': 'Let\u2019s build the thing your business needs.',
+        'contact.desc': 'Tell us what you\u2019re working on. We\u2019ll reply within one business day.',
+        'contact.namePh': 'Your name',
+        'contact.emailPh': 'Email address',
+        'contact.msgPh': 'What do you need built?',
+        'contact.submit': 'Start your project \u2192',
+        'contact.sending': 'Sending\u2026',
+        'contact.fillAll': 'Please fill in all fields.',
+        'contact.success': 'Message sent \u2014 check your inbox for a confirmation.',
+        'contact.error': 'Unable to send. Email us at contact@onraven.ca.',
+        'contact.errorGeneric': 'Something went wrong.',
+        'footer.line1': 'Raven Platforms Inc. \u00b7 Registered in Toronto, Canada'
+      },
+      es: {
+        'meta.title': 'Raven Platforms Inc. — Sitios web y plataformas que conquistan clientes | Toronto, Canad\u00e1',
+        'meta.description': 'Raven Platforms Inc. es un estudio de productos digitales con sede en Toronto. Dise\u00f1amos y desarrollamos sitios web, aplicaciones web, apps m\u00f3viles, comercio electr\u00f3nico, SEO y automatizaci\u00f3n para empresas en Am\u00e9rica del Norte y el Caribe.',
+        'a11y.skip': 'Saltar al contenido principal',
+        'a11y.brandHome': 'Inicio de Raven Platforms',
+        'a11y.openMenu': 'Abrir men\u00fa',
+        'a11y.closeMenu': 'Cerrar men\u00fa',
+        'a11y.language': 'Idioma',
+        'nav.services': 'Servicios',
+        'nav.clients': 'Clientes',
+        'nav.faq': 'Preguntas',
+        'nav.start': 'Empezar \u2192',
+        'hero.title': 'Construimos sitios web y plataformas que <em>conquistan clientes</em><span class="rule"></span>',
+        'hero.desc': 'Raven Platforms dise\u00f1a y desarrolla productos digitales modernos y r\u00e1pidos para empresas ambiciosas \u2014 desde sitios de marketing hasta aplicaciones web completas.',
+        'hero.cta': 'Inicia tu proyecto \u2192',
+        'marquee.srTitle': 'Clientes',
+        'marquee.label': 'Con la confianza de equipos en Am\u00e9rica del Norte y el Caribe',
+        'spotlight.tag': 'Producto destacado',
+        'spotlight.desc': 'Nuestra plataforma de comunicaci\u00f3n con clientes impulsada por IA \u2014 chat web, mensajer\u00eda y herramientas de engagement para empresas modernas.',
+        'spotlight.cta': 'Explorar OnRaven \u2197',
+        'services.title': 'Qu\u00e9 hacemos',
+        'services.tag': '8 capacidades \u00b7 un solo equipo',
+        'services.s1.title': 'Sitios web a medida',
+        'services.s1.desc': 'Sitios de marketing enfocados en conversi\u00f3n, dise\u00f1ados y desarrollados desde cero.',
+        'services.s2.title': 'Apps web y plataformas',
+        'services.s2.desc': 'Paneles, portales y productos SaaS que escalan contigo.',
+        'services.s3.title': 'Comercio electr\u00f3nico',
+        'services.s3.desc': 'Tiendas online optimizadas para vender y f\u00e1ciles de administrar.',
+        'services.s4.title': 'Apps m\u00f3viles',
+        'services.s4.desc': 'Experiencias iOS y Android que tus clientes siguen usando.',
+        'services.s5.title': 'SEO y rendimiento',
+        'services.s5.desc': 'Velocidad y visibilidad en buscadores que crecen con el tiempo.',
+        'services.s6.title': 'Branding y dise\u00f1o',
+        'services.s6.desc': 'Identidad e interfaces que transmiten profesionalismo.',
+        'services.s7.title': 'Automatizaci\u00f3n e integraciones',
+        'services.s7.desc': 'Conecta tus herramientas y elimina el trabajo repetitivo.',
+        'services.s8.title': 'Mantenimiento y soporte',
+        'services.s8.desc': 'Mantenemos todo r\u00e1pido, seguro y en l\u00ednea.',
+        'stats.label': 'Datos destacados',
+        'stats.years': 'A\u00f1os en el mercado',
+        'stats.projects': 'Proyectos entregados',
+        'stats.industries': 'Industrias atendidas',
+        'stats.countries': 'Pa\u00edses atendidos',
+        'faq.title': 'Preguntas frecuentes',
+        'faq.q1': '\u00bfQu\u00e9 hace Raven Platforms?',
+        'faq.a1': 'Somos un estudio de productos digitales con sede en Toronto. Dise\u00f1amos y desarrollamos sitios web, aplicaciones web, apps m\u00f3viles, tiendas de comercio electr\u00f3nico y sistemas de automatizaci\u00f3n para empresas en Am\u00e9rica del Norte y el Caribe.',
+        'faq.q2': '\u00bfD\u00f3nde est\u00e1 ubicada Raven Platforms?',
+        'faq.a2': 'Raven Platforms Inc. est\u00e1 registrada en Toronto, Ontario, Canad\u00e1. Atendemos clientes en Canad\u00e1, Estados Unidos y el Caribe.',
+        'faq.q3': '\u00bfQu\u00e9 servicios ofrecen?',
+        'faq.a3': 'Sitios web a medida, aplicaciones web y plataformas SaaS, comercio electr\u00f3nico, apps m\u00f3viles iOS y Android, SEO y rendimiento, branding y dise\u00f1o, automatizaci\u00f3n e integraciones, y mantenimiento y soporte continuo.',
+        'faq.q4': '\u00bfC\u00f3mo inicio un proyecto?',
+        'faq.a4': 'Escr\u00edbenos a <a href="mailto:contact@onraven.ca">contact@onraven.ca</a> o usa el formulario de contacto. Normalmente respondemos en un d\u00eda h\u00e1bil.',
+        'contact.title': 'Construyamos lo que tu negocio necesita.',
+        'contact.desc': 'Cu\u00e9ntanos en qu\u00e9 est\u00e1s trabajando. Respondemos en un d\u00eda h\u00e1bil.',
+        'contact.namePh': 'Tu nombre',
+        'contact.emailPh': 'Correo electr\u00f3nico',
+        'contact.msgPh': '\u00bfQu\u00e9 necesitas construir?',
+        'contact.submit': 'Inicia tu proyecto \u2192',
+        'contact.sending': 'Enviando\u2026',
+        'contact.fillAll': 'Por favor completa todos los campos.',
+        'contact.success': 'Mensaje enviado \u2014 revisa tu bandeja de entrada para la confirmaci\u00f3n.',
+        'contact.error': 'No se pudo enviar. Escr\u00edbenos a contact@onraven.ca.',
+        'contact.errorGeneric': 'Algo sali\u00f3 mal.',
+        'footer.line1': 'Raven Platforms Inc. \u00b7 Registrada en Toronto, Canad\u00e1'
+      }
+    };
+
+    var currentLang = 'en';
+
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || (i18n.en[key] || '');
+    }
+
+    function applyLang(lang) {
+      if (!i18n[lang]) lang = 'en';
+      currentLang = lang;
+      document.documentElement.lang = lang === 'es' ? 'es-CA' : 'en-CA';
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (t(key)) el.textContent = t(key);
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-html');
+        if (t(key)) el.innerHTML = t(key);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        if (t(key)) el.placeholder = t(key);
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria');
+        if (t(key)) el.setAttribute('aria-label', t(key));
+      });
+
+      document.title = t('meta.title');
+      var desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.content = t('meta.description');
+      var ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.content = t('meta.title');
+      var ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.content = t('meta.description');
+      var ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (ogLocale) ogLocale.content = lang === 'es' ? 'es_CA' : 'en_CA';
+
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        var active = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      try { localStorage.setItem('rp-lang', lang); } catch (e) {}
+      if (window.history && window.history.replaceState) {
+        var url = new URL(window.location.href);
+        if (lang === 'es') url.searchParams.set('lang', 'es');
+        else url.searchParams.delete('lang');
+        window.history.replaceState({}, '', url);
+      }
+    }
+
+    function initLang() {
+      var lang = 'en';
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('lang') === 'es') lang = 'es';
+        else if (params.get('lang') === 'en') lang = 'en';
+        else if (localStorage.getItem('rp-lang') === 'es') lang = 'es';
+        else if (navigator.language && navigator.language.toLowerCase().indexOf('es') === 0) lang = 'es';
+      } catch (e) {}
+      applyLang(lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyLang(btn.getAttribute('data-lang'));
+      });
+    });
+
+    initLang();
+
     // --- mobile nav ---
     var nav = document.querySelector('.nav');
     var toggle = document.querySelector('.nav-toggle');
@@ -507,13 +724,13 @@
       toggle.addEventListener('click', function () {
         var open = nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        toggle.setAttribute('aria-label', open ? t('a11y.closeMenu') : t('a11y.openMenu'));
       });
       nav.querySelectorAll('.nav-links a').forEach(function (link) {
         link.addEventListener('click', function () {
           nav.classList.remove('is-open');
           toggle.setAttribute('aria-expanded', 'false');
-          toggle.setAttribute('aria-label', 'Open menu');
+          toggle.setAttribute('aria-label', t('a11y.openMenu'));
         });
       });
     }
@@ -572,14 +789,14 @@
         var msg = val('rp-msg');
 
         if (!name || !email || !msg) {
-          setStatus('Please fill in all fields.', 'err');
+          setStatus(t('contact.fillAll'), 'err');
           return;
         }
 
-        setStatus('Sending…', '');
+        setStatus(t('contact.sending'), '');
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending…';
+          submitBtn.textContent = t('contact.sending');
         }
 
         fetch(apiUrl, {
@@ -589,21 +806,21 @@
         })
           .then(function (res) {
             return res.json().catch(function () { return {}; }).then(function (data) {
-              if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+              if (!res.ok) throw new Error(data.error || t('contact.errorGeneric'));
               return data;
             });
           })
           .then(function () {
             form.reset();
-            setStatus('Message sent — check your inbox for a confirmation.', 'ok');
+            setStatus(t('contact.success'), 'ok');
           })
           .catch(function (err) {
-            setStatus(err.message || 'Unable to send. Email us at contact@onraven.ca.', 'err');
+            setStatus(err.message || t('contact.error'), 'err');
           })
           .finally(function () {
             if (submitBtn) {
               submitBtn.disabled = false;
-              submitBtn.textContent = 'Start your project \u2192';
+              submitBtn.textContent = t('contact.submit');
             }
           });
       });
