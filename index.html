@@ -71,7 +71,7 @@
         "Business automation",
         "Software integrations"
       ],
-      "sameAs": []
+      "sameAs": ["https://onraven.com"]
     },
     {
       "@type": "ProfessionalService",
@@ -210,6 +210,17 @@
   .nav-links a{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
   .nav-cta{border-bottom:2px solid var(--accent);padding-bottom:2px;}
   .nav-cta:hover{color:var(--accent);}
+  .nav-spotlight{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--accent);
+    border-radius:999px;color:var(--accent);transition:background .2s,color .2s;}
+  .nav-spotlight:hover{background:var(--accent);color:#fff;}
+
+  /* spotlight */
+  .spotlight{padding:clamp(28px,4vw,36px) var(--pad);border-top:2px solid var(--ink);background:#f7f4fd;}
+  .spotlight-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px 28px;}
+  .spotlight-tag{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
+  .spotlight h2{font:400 clamp(28px,4vw,40px) var(--serif);margin:0 0 8px;}
+  .spotlight p{font-size:15px;line-height:1.55;color:var(--muted);margin:0;max-width:520px;}
+  .spotlight .btn-dark{flex-shrink:0;}
 
   /* hero */
   .hero{padding:clamp(48px,8vw,88px) var(--pad) clamp(40px,6vw,64px);}
@@ -314,6 +325,7 @@
     <a class="brand" href="#top" aria-label="Raven Platforms home">Raven Platforms<span>.</span></a>
     <div class="nav-links">
       <a href="#services">Services</a>
+      <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
       <a href="#work">Clients</a>
       <a href="#faq">FAQ</a>
       <a class="nav-cta" href="#contact">Start &rarr;</a>
@@ -337,6 +349,18 @@
       <div class="track" id="track">
         <!-- names injected once, then duplicated by JS for a seamless loop -->
       </div>
+    </div>
+  </section>
+
+  <!-- onraven spotlight -->
+  <section class="spotlight reveal" aria-labelledby="spotlight-heading">
+    <div class="spotlight-inner">
+      <div>
+        <span class="spotlight-tag">Spotlight product</span>
+        <h2 id="spotlight-heading">OnRaven</h2>
+        <p>Our AI-powered customer communication platform — web chat, messaging, and engagement tools built for modern businesses.</p>
+      </div>
+      <a class="btn-dark" href="https://onraven.com" target="_blank" rel="noopener noreferrer">Explore OnRaven &nearr;</a>
     </div>
   </section>
 
@@ -372,7 +396,6 @@
   <section id="faq" class="section" aria-labelledby="faq-heading">
     <div class="sec-head reveal">
       <h2 id="faq-heading">Frequently asked questions</h2>
-      <span class="tag">Clear answers for search &amp; AI</span>
     </div>
     <dl class="faq-list">
       <div class="faq-item reveal">
