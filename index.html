@@ -347,9 +347,22 @@
     .spotlight-inner{flex-direction:column;align-items:stretch;}
     .spotlight .btn-dark{width:100%;text-align:center;}
 
-    .sec-head{flex-direction:column;align-items:flex-start;gap:8px;}
-    .srv{flex-direction:column;gap:6px;padding:18px 8px;margin:0 -8px;}
-    .srv .ttl{flex:1 1 auto;}
+    .section{padding:clamp(36px,7vw,56px) var(--pad);}
+    .sec-head{flex-direction:column;align-items:flex-start;margin-bottom:22px;padding-bottom:14px;gap:6px;}
+    .sec-head h2{font-size:clamp(28px,7vw,40px);}
+
+    #services .srv{
+      flex-direction:row;flex-wrap:wrap;align-items:flex-start;
+      gap:2px 10px;padding:12px 4px;margin:0 -4px;
+    }
+    #services .srv .num{width:28px;font-size:12px;padding-top:2px;}
+    #services .srv .ttl{flex:1 1 calc(100% - 38px);font-size:17px;line-height:1.25;}
+    #services .srv .desc{
+      flex:1 1 100%;font-size:14px;line-height:1.45;
+      padding-left:38px;margin-top:2px;
+    }
+
+    .faq-item{padding:16px 8px;margin:0 -8px;}
 
     .stat-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
 
@@ -364,6 +377,10 @@
     .brand{font-size:14px;}
     .track{gap:24px;}
     .track .name{font-size:15px;}
+    #services .srv{padding:10px 2px;}
+    #services .srv .ttl{font-size:16px;}
+    #services .srv .desc{font-size:13px;padding-left:34px;}
+    #services .srv .num{width:24px;}
   }
 
   @media (prefers-reduced-motion:reduce){
