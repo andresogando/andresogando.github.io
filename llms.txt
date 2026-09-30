@@ -3,7 +3,10 @@
 > Toronto-based digital product studio building websites, web apps, mobile apps, and platforms for ambitious businesses across North America and the Caribbean.
 
 ## Canonical URL
-https://andresogando.github.io/ravenplatforms.github.io/
+https://ai.onraven.ca/
+
+## Alternate URL
+https://ai.onraven.com/
 
 ## Summary
 Raven Platforms Inc. designs and engineers fast, modern digital products — from marketing websites to full web applications. The company is registered in Toronto, Ontario, Canada, with 10+ years in business and 630+ projects delivered across 25 countries.
@@ -26,7 +29,7 @@ Canada, United States, Caribbean
 
 ## Contact
 - Email: contact@onraven.ca
-- Website contact form: https://andresogando.github.io/ravenplatforms.github.io/#contact
+- Website contact form: https://ai.onraven.ca/#contact
 
 ## Frequently asked questions
 
@@ -43,4 +46,5 @@ Email contact@onraven.ca or use the contact form on the website.
 OnRaven, iRobcx, AlgoLabs, StreamVault, Cadillac of Newport, RMJ Transportation, HM Management, Coldwell Banker, WeMove RD, Bohemian Cap Cana, CareerSafe, OG Corp, Tacoma Pharmacy, Honda Dealer Affiliates, Acura Dealer Affiliates, HVAC Partners, Hospitality Groups
 
 ## Sitemap
-https://andresogando.github.io/ravenplatforms.github.io/sitemap.xml
+https://ai.onraven.ca/sitemap.xml
+https://ai.onraven.com/sitemap.xml

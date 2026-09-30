@@ -49,11 +49,6 @@ Static files included for discoverability:
 - `llms.txt` — plain-text summary for AI assistants and answer engines
 - `site.webmanifest` — PWA metadata
 
-If you connect a **custom domain**, update the base URL in:
+Production hosts: [https://ai.onraven.ca](https://ai.onraven.ca) (canonical) and [https://ai.onraven.com](https://ai.onraven.com).
 
-- `index.html` (canonical, Open Graph, JSON-LD)
-- `robots.txt` (Sitemap line)
-- `sitemap.xml`
-- `llms.txt`
-
-Then submit the sitemap in [Google Search Console](https://search.google.com/search-console).
+Submit `https://ai.onraven.ca/sitemap.xml` in [Google Search Console](https://search.google.com/search-console).

@@ -1,5 +1,5 @@
 # Raven Platforms Inc.
-# Update the Sitemap URL if you connect a custom domain.
+# Canonical host is https://ai.onraven.ca (https://ai.onraven.com is an alternate).
 
 User-agent: *
 Allow: /
@@ -25,4 +25,5 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://andresogando.github.io/ravenplatforms.github.io/sitemap.xml
+Sitemap: https://ai.onraven.ca/sitemap.xml
+Sitemap: https://ai.onraven.com/sitemap.xml

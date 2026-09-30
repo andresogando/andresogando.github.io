@@ -2,21 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://andresogando.github.io/ravenplatforms.github.io/</loc>
-    <lastmod>2026-06-30T01:33:48+00:00</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://andresogando.github.io/ravenplatforms.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://andresogando.github.io/ravenplatforms.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="es-CA" href="https://andresogando.github.io/ravenplatforms.github.io/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://andresogando.github.io/ravenplatforms.github.io/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://andresogando.github.io/ravenplatforms.github.io/"/>
+    <loc>https://ai.onraven.ca/</loc>
+    <lastmod>2026-09-29T23:59:00+00:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://ai.onraven.ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai.onraven.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-CA" href="https://ai.onraven.ca/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai.onraven.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai.onraven.ca/"/>
   </url>
   <url>
-    <loc>https://andresogando.github.io/ravenplatforms.github.io/?lang=es</loc>
-    <lastmod>2026-06-30T01:33:48+00:00</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://andresogando.github.io/ravenplatforms.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://andresogando.github.io/ravenplatforms.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="es-CA" href="https://andresogando.github.io/ravenplatforms.github.io/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://andresogando.github.io/ravenplatforms.github.io/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://andresogando.github.io/ravenplatforms.github.io/"/>
+    <loc>https://ai.onraven.ca/?lang=es</loc>
+    <lastmod>2026-09-29T23:59:00+00:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://ai.onraven.ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai.onraven.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-CA" href="https://ai.onraven.ca/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai.onraven.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai.onraven.ca/"/>
+  </url>
+  <url>
+    <loc>https://ai.onraven.com/</loc>
+    <lastmod>2026-09-29T23:59:00+00:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://ai.onraven.ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai.onraven.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-CA" href="https://ai.onraven.ca/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai.onraven.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai.onraven.ca/"/>
+  </url>
+  <url>
+    <loc>https://ai.onraven.com/?lang=es</loc>
+    <lastmod>2026-09-29T23:59:00+00:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://ai.onraven.ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai.onraven.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-CA" href="https://ai.onraven.ca/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai.onraven.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai.onraven.ca/"/>
   </url>
 </urlset>
