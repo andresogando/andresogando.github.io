@@ -42,8 +42,12 @@ Toronto, Ontario, Canada.
 ### How do I contact Raven Platforms?
 Email contact@onraven.ca or use the contact form on the website.
 
+## Owned products
+- OnRaven — AI-powered customer communication platform (https://onraven.com)
+- Prevsi — Free at-home HIV prevention and telehealth for Florida (https://prevsi.com)
+
 ## Notable clients
-OnRaven, iRobcx, AlgoLabs, StreamVault, Cadillac of Newport, RMJ Transportation, HM Management, Coldwell Banker, WeMove RD, Bohemian Cap Cana, CareerSafe, OG Corp, Tacoma Pharmacy, Honda Dealer Affiliates, Acura Dealer Affiliates, HVAC Partners, Hospitality Groups
+Prevsi, OnRaven, iRobcx, AlgoLabs, StreamVault, Cadillac of Newport, RMJ Transportation, HM Management, Coldwell Banker, WeMove RD, Bohemian Cap Cana, CareerSafe, OG Corp, Tacoma Pharmacy, Honda Dealer Affiliates, Acura Dealer Affiliates, HVAC Partners, Hospitality Groups
 
 ## Sitemap
 https://ai.onraven.ca/sitemap.xml

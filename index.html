@@ -73,7 +73,7 @@
         "Business automation",
         "Software integrations"
       ],
-      "sameAs": ["https://ai.onraven.com", "https://onraven.com"]
+      "sameAs": ["https://ai.onraven.com", "https://onraven.com", "https://prevsi.com"]
     },
     {
       "@type": "ProfessionalService",
@@ -220,6 +220,7 @@
   .nav-links a{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
   .nav-cta{border-bottom:2px solid var(--accent);padding-bottom:2px;}
   .nav-cta:hover{color:var(--accent);}
+  .nav-products{display:flex;align-items:center;gap:8px;flex-shrink:0;}
   .nav-spotlight{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--accent);
     border-radius:999px;color:var(--accent);transition:background .2s,color .2s;white-space:nowrap;}
   .nav-spotlight:hover{background:var(--accent);color:#fff;}
@@ -234,7 +235,10 @@
   .spotlight-tag{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
   .spotlight h2{font:400 clamp(28px,4vw,40px) var(--serif);margin:0 0 8px;}
   .spotlight p{font-size:15px;line-height:1.55;color:var(--muted);margin:0;max-width:520px;}
-  .spotlight .btn-dark{flex-shrink:0;}
+  .spotlight .btn-dark,.spotlight .btn-light{flex-shrink:0;text-align:center;}
+  .spotlight-alt{background:var(--ink);color:#fff;}
+  .spotlight-alt p{color:#c4c4c8;}
+  .spotlight-alt .btn-light{display:inline-block;text-decoration:none;}
 
   /* hero */
   .hero{padding:clamp(48px,8vw,88px) var(--pad) clamp(40px,6vw,64px);}
@@ -333,6 +337,7 @@
     .nav.is-open .nav-links{display:flex;}
     .nav-links a{padding:14px 2px;font-size:13px;border-bottom:1px solid var(--line);}
     .nav-links a:last-child{border-bottom:none;}
+    .nav-products{flex-direction:column;align-items:stretch;width:100%;gap:0;}
     .nav-spotlight{justify-content:center;margin:4px 0;}
     .nav-cta{border-bottom:none;padding:14px 2px;}
     .lang-toggle{align-self:flex-start;margin:8px 0 4px;}
@@ -345,7 +350,7 @@
     .marquee-label span{font-size:10px;letter-spacing:.1em;line-height:1.5;}
 
     .spotlight-inner{flex-direction:column;align-items:stretch;}
-    .spotlight .btn-dark{width:100%;text-align:center;}
+    .spotlight .btn-dark,.spotlight .btn-light{width:100%;text-align:center;}
 
     .section{padding:clamp(36px,7vw,56px) var(--pad);}
     .sec-head{flex-direction:column;align-items:flex-start;margin-bottom:22px;padding-bottom:14px;gap:6px;}
@@ -402,7 +407,10 @@
     </button>
     <div class="nav-links" id="nav-menu">
       <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
+      <div class="nav-products">
+        <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
+        <a href="https://prevsi.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">Prevsi <span aria-hidden="true">&nearr;</span></a>
+      </div>
       <a href="#work" data-i18n="nav.clients">Clients</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <div class="lang-toggle" role="group" data-i18n-aria="a11y.language">
@@ -442,6 +450,18 @@
         <p data-i18n="spotlight.desc">Our AI-powered customer communication platform — web chat, messaging, and engagement tools built for modern businesses.</p>
       </div>
       <a class="btn-dark" href="https://onraven.com" target="_blank" rel="noopener noreferrer" data-i18n="spotlight.cta">Explore OnRaven &nearr;</a>
+    </div>
+  </section>
+
+  <!-- prevsi spotlight -->
+  <section class="spotlight spotlight-alt reveal" aria-labelledby="spotlight-prevsi-heading">
+    <div class="spotlight-inner">
+      <div>
+        <span class="spotlight-tag" data-i18n="spotlight.tag">Spotlight product</span>
+        <h2 id="spotlight-prevsi-heading">Prevsi</h2>
+        <p data-i18n="spotlight.prevsi.desc">Our at-home HIV prevention platform for Florida — free STI testing, licensed physicians, and PrEP delivered discreetly, always at no cost to the patient.</p>
+      </div>
+      <a class="btn-light" href="https://prevsi.com" target="_blank" rel="noopener noreferrer" data-i18n="spotlight.prevsi.cta">Explore Prevsi &nearr;</a>
     </div>
   </section>
 
@@ -549,6 +569,8 @@
         'spotlight.tag': 'Spotlight product',
         'spotlight.desc': 'Our AI-powered customer communication platform \u2014 web chat, messaging, and engagement tools built for modern businesses.',
         'spotlight.cta': 'Explore OnRaven \u2197',
+        'spotlight.prevsi.desc': 'Our at-home HIV prevention platform for Florida \u2014 free STI testing, licensed physicians, and PrEP delivered discreetly, always at no cost to the patient.',
+        'spotlight.prevsi.cta': 'Explore Prevsi \u2197',
         'services.title': 'What we do',
         'services.tag': '8 capabilities \u00b7 one team',
         'services.s1.title': 'Custom Websites',
@@ -614,6 +636,8 @@
         'spotlight.tag': 'Producto destacado',
         'spotlight.desc': 'Nuestra plataforma de comunicaci\u00f3n con clientes impulsada por IA \u2014 chat web, mensajer\u00eda y herramientas de engagement para empresas modernas.',
         'spotlight.cta': 'Explorar OnRaven \u2197',
+        'spotlight.prevsi.desc': 'Nuestra plataforma de prevenci\u00f3n del VIH en casa para Florida \u2014 pruebas de ITS, m\u00e9dicos licenciados y PrEP a domicilio, siempre a costo cero para el paciente.',
+        'spotlight.prevsi.cta': 'Explorar Prevsi \u2197',
         'services.title': 'Qu\u00e9 hacemos',
         'services.tag': '8 capacidades \u00b7 un solo equipo',
         'services.s1.title': 'Sitios web a medida',
@@ -754,7 +778,7 @@
 
     // --- trusted-by marquee ---
     var names = [
-      'OnRaven','iRobcx','AlgoLabs','StreamVault','Cadillac of Newport',
+      'Prevsi','OnRaven','iRobcx','AlgoLabs','StreamVault','Cadillac of Newport',
       'RMJ Transportation','HM Management','Coldwell Banker','WeMove RD',
       'Bohemian Cap Cana','CareerSafe','OG Corp','Tacoma Pharmacy',
       'Honda Dealer Affiliates','Acura Dealer Affiliates','HVAC Partners','Hospitality Groups',
