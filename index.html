@@ -329,6 +329,7 @@
     text-transform:uppercase;color:var(--faint);line-height:1.8;pointer-events:none;}
   .hud-tl{top:92px;left:var(--pad);}
   .hud-tr{top:92px;right:var(--pad);text-align:right;}
+  .hud-bl{bottom:26px;left:var(--pad);color:var(--dim);}
   .hud-br{bottom:26px;right:var(--pad);text-align:right;color:var(--dim);}
   .hud .acc{color:var(--accent);}
   .cnr{position:absolute;width:20px;height:20px;z-index:2;pointer-events:none;}
@@ -385,15 +386,37 @@
   .mission p{font-size:15px;line-height:1.6;color:var(--dim);margin:0 0 26px;flex:1;}
   .mission .btn{align-self:flex-start;padding:13px 22px;font-size:12.5px;}
 
-  /* ---------- systems (services) ---------- */
+  /* ---------- services constellation ---------- */
   .systems{padding:clamp(60px,9vw,96px) var(--pad);}
-  .sys{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 26px;padding:22px 14px;margin:0 -14px;
-    border-bottom:1px solid var(--line);transition:background .2s,padding-left .2s;}
-  .sys:hover{background:rgba(168,85,247,.05);padding-left:22px;}
-  .sys .num{font:500 12px var(--mono);color:var(--accent);width:64px;flex-shrink:0;letter-spacing:.08em;}
-  .sys .ttl{font:600 clamp(17px,2.3vw,21px) var(--grot);letter-spacing:.01em;
-    flex:0 0 clamp(200px,30%,300px);text-transform:uppercase;}
-  .sys .desc{font-size:14.5px;color:var(--dim);line-height:1.55;flex:1 1 240px;}
+  .orbit-map{position:relative;height:520px;}
+  .orbit-path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+  .orbit-path path{fill:none;stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 7;
+    animation:dashflow 40s linear infinite;}
+  .node{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+    width:54px;height:54px;border-radius:50%;border:1px solid var(--line-strong);
+    background:rgba(7,9,17,.88);color:var(--dim);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;padding:0;z-index:2;
+    transition:border-color .25s,color .25s,box-shadow .25s,transform .25s;}
+  .node svg{width:20px;height:20px;}
+  .node::before{content:attr(data-idx);position:absolute;bottom:-22px;left:50%;
+    transform:translateX(-50%);font:500 9px var(--mono);letter-spacing:.1em;color:var(--faint);}
+  .node::after{content:'';position:absolute;inset:-5px;border-radius:50%;
+    border:1px solid transparent;transition:border-color .25s,transform .3s;}
+  .node:hover,.node:focus-visible,.node.on{border-color:var(--accent);color:var(--star);outline:none;
+    transform:translate(-50%,-50%) scale(1.14);box-shadow:0 0 26px rgba(168,85,247,.32);}
+  .node.on::after{border-color:rgba(168,85,247,.45);transform:scale(1.4);}
+  .node .tip{display:none;}
+  .svc-panel{position:absolute;right:0;bottom:0;width:min(360px,82%);z-index:3;
+    border:1px solid var(--line-strong);background:rgba(7,9,17,.9);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:22px 24px;}
+  .svc-panel .svc-idx{font:500 10px var(--mono);letter-spacing:.16em;color:var(--accent);}
+  .svc-panel .svc-ico{float:right;color:var(--accent);}
+  .svc-panel .svc-ico svg{width:22px;height:22px;display:block;}
+  .svc-panel h3{font:600 20px var(--grot);text-transform:uppercase;letter-spacing:.01em;margin:12px 0 8px;clear:none;}
+  .svc-panel p{font-size:14px;line-height:1.6;color:var(--dim);margin:0;}
+  .svc-panel.flash{animation:flash .28s ease;}
+  .orbit-hint{position:absolute;left:0;bottom:0;font:500 10px var(--mono);
+    letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
 
   /* ---------- telemetry ---------- */
   .telemetry{padding:clamp(56px,8vw,80px) var(--pad);}
@@ -477,12 +500,13 @@
   @keyframes spin{to{transform:rotate(360deg);}}
   @keyframes bootIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
   @keyframes bootBar{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  @keyframes dashflow{to{stroke-dashoffset:-400;}}
 
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
     clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-  @media (max-width:768px){
-    :root{--pad:clamp(16px,4.5vw,24px);}
+  /* nav collapses earlier so tablets get the clean menu */
+  @media (max-width:960px){
     .nav{flex-wrap:wrap;gap:0;padding:12px var(--pad);padding-top:max(12px, env(safe-area-inset-top));}
     .brand{font-size:13px;max-width:calc(100% - 52px);}
     .nav-toggle{display:flex;flex-shrink:0;margin-left:auto;}
@@ -495,16 +519,37 @@
     .nav-spotlight{justify-content:center;margin:4px 0;}
     .nav-cta{border:none;padding:14px 2px;text-align:left;}
     .lang-toggle{align-self:flex-start;margin:10px 0 4px;}
+    .hud-tr{display:none;}
+  }
+
+  @media (max-width:860px){
+    /* constellation -> swipeable card strip */
+    .orbit-map{height:auto;display:flex;gap:14px;overflow-x:auto;padding:4px 2px 18px;
+      scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+    .orbit-map::-webkit-scrollbar{display:none;}
+    .orbit-path,.orbit-hint,.svc-panel{display:none;}
+    .node{position:static;transform:none;scroll-snap-align:start;flex:0 0 236px;
+      width:auto;height:auto;border-radius:0;flex-direction:column;align-items:flex-start;
+      gap:12px;padding:18px;text-align:left;background:var(--panel);}
+    .node svg{width:22px;height:22px;}
+    .node::before{content:attr(data-idx);position:static;transform:none;
+      order:3;font-size:10px;color:var(--accent);margin-top:2px;}
+    .node::after{content:none;}
+    .node .tip{display:block;}
+    .node .tip b{display:block;font:600 15px var(--grot);letter-spacing:.02em;text-transform:uppercase;}
+    .node .tip i{display:block;font-style:normal;font-size:13px;line-height:1.55;
+      color:var(--dim);margin-top:5px;}
+    .node:hover,.node:focus-visible,.node.on{transform:none;}
+  }
+
+  @media (max-width:768px){
+    :root{--pad:clamp(16px,4.5vw,24px);}
     .hero{padding-top:130px;align-items:flex-end;padding-bottom:110px;}
     .hero h1{font-size:clamp(34px,10vw,52px);}
     .hero-cta .btn{flex:1 1 100%;justify-content:center;}
-    .hud-tl{top:104px;} .hud-tr{display:none;} .hud-br{display:none;}
+    .hud-tl{top:104px;} .hud-bl{display:none;} .hud-br{display:none;}
     .cnr{display:none;}
     .sec-head{flex-direction:column;align-items:flex-start;margin-bottom:26px;padding-bottom:16px;gap:4px;}
-    .sys{gap:2px 12px;padding:16px 4px;margin:0 -4px;}
-    .sys .num{width:52px;font-size:11px;padding-top:2px;}
-    .sys .ttl{flex:1 1 calc(100% - 64px);font-size:16px;}
-    .sys .desc{flex:1 1 100%;font-size:13.5px;padding-left:64px;margin-top:2px;}
     .faq-item{grid-template-columns:52px 1fr;gap:4px 12px;padding:18px 4px;margin:0 -4px;}
     .stat-grid{grid-template-columns:repeat(2,1fr);gap:26px;}
     .footer{flex-direction:column;align-items:flex-start;gap:8px;}
@@ -513,9 +558,8 @@
   @media (max-width:380px){
     .brand{font-size:12px;}
     .track{gap:26px;}
-    .sys .num{width:44px;}
-    .sys .desc{padding-left:56px;}
     .faq-item{grid-template-columns:44px 1fr;}
+    .node{flex:0 0 200px;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -523,7 +567,7 @@
     .up{animation:none;}
     .reveal{opacity:1;transform:none;filter:none;transition:none;}
     .track{animation:none;}
-    .ok-dot,.brand-mark svg,.scroll-cue i::after,.boot *,.boot-bar i{animation:none!important;}
+    .ok-dot,.brand-mark svg,.scroll-cue i::after,.boot *,.boot-bar i,.orbit-path path{animation:none!important;}
     .boot-lines span,.boot-mark{opacity:1;}
   }
 </style>
@@ -546,9 +590,9 @@
       <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
     <div class="nav-links" id="nav-menu">
-      <a href="#services" data-i18n="nav.systems">Systems</a>
-      <a href="#work" data-i18n="nav.manifest">Manifest</a>
-      <a href="#faq" data-i18n="nav.brief">Briefing</a>
+      <a href="#services" data-i18n="nav.systems">Services</a>
+      <a href="#work" data-i18n="nav.manifest">Clients</a>
+      <a href="#faq" data-i18n="nav.brief">FAQ</a>
       <div class="nav-products">
         <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
         <a href="https://prevsi.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">Prevsi <span aria-hidden="true">&nearr;</span></a>
@@ -557,7 +601,7 @@
         <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       </div>
-      <a class="nav-cta" href="#contact" data-i18n="nav.cta">Transmit &rarr;</a>
+      <a class="nav-cta" href="#contact" data-i18n="nav.cta">Contact &rarr;</a>
     </div>
   </nav>
 
@@ -568,26 +612,27 @@
     <span class="cnr cnr-bl"></span><span class="cnr cnr-br"></span>
     <div class="hud hud-tl" data-i18n-html="hud.coords">LAT 43.6532&deg;N<br>LON 79.3832&deg;W</div>
     <div class="hud hud-tr"><span data-i18n="hud.deck">RAVEN-1 // FLIGHT DECK</span><br><span class="acc">TORONTO &middot; CA</span></div>
+    <div class="hud hud-bl" id="signalHud">Signal // Toronto &mdash; local</div>
     <div class="hud hud-br" id="missionClock">T+ 00:00:00</div>
 
     <div class="hero-core">
-      <span class="status-pill up d1"><span class="ok-dot"></span><span data-i18n="hud.status">Systems online — accepting new missions</span></span>
+      <span class="status-pill up d1"><span class="ok-dot"></span><span data-i18n="hud.status">Accepting new projects</span></span>
       <h1 class="up d2" data-i18n="hero.title">We build websites &amp; platforms that win customers</h1>
       <p class="hero-desc up d3" data-i18n="hero.desc">Raven Platforms is a Toronto software studio. We design and engineer fast, modern digital products for ambitious businesses — from marketing sites to full web apps, DevOps and audits.</p>
       <div class="hero-cta up d3">
-        <a class="btn btn-solid" href="#contact" data-i18n="hero.cta">Initiate contact &darr;</a>
-        <a class="btn" href="#work" data-i18n="hero.cta2">View flight manifest</a>
+        <a class="btn btn-solid" href="#contact" data-i18n="hero.cta">Start your project &darr;</a>
+        <a class="btn" href="#work" data-i18n="hero.cta2">Meet our clients</a>
       </div>
     </div>
 
-    <div class="scroll-cue" aria-hidden="true"><span data-i18n="hud.scroll">Descend</span><i></i></div>
+    <div class="scroll-cue" aria-hidden="true"><span data-i18n="hud.scroll">Scroll</span><i></i></div>
   </header>
 
   <!-- flight manifest (trusted by) -->
   <section id="work" class="ticker-sec slab" aria-labelledby="clients-heading">
     <div class="ticker-label">
       <h2 id="clients-heading" class="sr-only" data-i18n="manifest.srTitle">Clients</h2>
-      <span class="mono-tag" style="color:var(--accent)" data-i18n="manifest.tag">Flight manifest</span>
+      <span class="mono-tag" style="color:var(--accent)" data-i18n="manifest.tag">Our clients</span>
       <span class="mono-tag" data-i18n="manifest.label">Trusted by teams across North America &amp; the Caribbean</span>
     </div>
     <div class="marquee">
@@ -600,30 +645,30 @@
   <!-- active missions -->
   <section class="missions slab" aria-labelledby="missions-heading">
     <div class="sec-head reveal">
-      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="missions.tag">Active missions</span>
-      <h2 id="missions-heading" data-i18n="missions.title">Spacecraft in orbit</h2></div>
-      <span class="sec-tag" data-i18n="missions.count">2 vehicles · 0 failures</span>
+      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="missions.tag">Our products</span>
+      <h2 id="missions-heading" data-i18n="missions.title">Products we own</h2></div>
+      <span class="sec-tag" data-i18n="missions.count">2 live products</span>
     </div>
     <div class="mission-grid">
       <article class="mission reveal">
         <div class="mission-top">
-          <span class="m-num" data-i18n="missions.m1.num">Mission 01</span>
-          <span class="m-status"><span class="ok-dot"></span><span data-i18n="missions.status">In orbit</span></span>
+          <span class="m-num" data-i18n="missions.m1.num">Product 01</span>
+          <span class="m-status"><span class="ok-dot"></span><span data-i18n="missions.status">Live</span></span>
         </div>
         <h3>OnRaven</h3>
         <div class="m-meta" data-i18n="missions.m1.meta">Comms platform · onraven.com</div>
         <p data-i18n="missions.m1.desc">Our AI-powered customer communication platform — web chat, messaging, and engagement tools built for modern businesses.</p>
-        <a class="btn" href="https://onraven.com" target="_blank" rel="noopener noreferrer" data-i18n="missions.cta">Visit spacecraft &nearr;</a>
+        <a class="btn" href="https://onraven.com" target="_blank" rel="noopener noreferrer" data-i18n="missions.cta">Visit site &nearr;</a>
       </article>
       <article class="mission reveal">
         <div class="mission-top">
-          <span class="m-num" data-i18n="missions.m2.num">Mission 02</span>
-          <span class="m-status"><span class="ok-dot"></span><span data-i18n="missions.status">In orbit</span></span>
+          <span class="m-num" data-i18n="missions.m2.num">Product 02</span>
+          <span class="m-status"><span class="ok-dot"></span><span data-i18n="missions.status">Live</span></span>
         </div>
         <h3>Prevsi</h3>
         <div class="m-meta" data-i18n="missions.m2.meta">Health platform · prevsi.com</div>
         <p data-i18n="missions.m2.desc">Our at-home HIV prevention platform for Florida — free STI testing, licensed physicians, and PrEP delivered discreetly, always at no cost to the patient.</p>
-        <a class="btn" href="https://prevsi.com" target="_blank" rel="noopener noreferrer" data-i18n="missions.cta">Visit spacecraft &nearr;</a>
+        <a class="btn" href="https://prevsi.com" target="_blank" rel="noopener noreferrer" data-i18n="missions.cta">Visit site &nearr;</a>
       </article>
     </div>
   </section>
@@ -631,29 +676,67 @@
   <!-- systems / capabilities -->
   <section id="services" class="systems slab" aria-labelledby="services-heading">
     <div class="sec-head reveal">
-      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="systems.tag">Flight systems</span>
-      <h2 id="services-heading" data-i18n="systems.title">Capabilities</h2></div>
-      <span class="sec-tag" data-i18n="systems.meta">08 systems · one crew</span>
+      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="systems.tag">What we do</span>
+      <h2 id="services-heading" data-i18n="systems.title">Services</h2></div>
+      <span class="sec-tag" data-i18n="systems.meta">10 services &middot; one team</span>
     </div>
-    <div>
-      <div class="sys reveal"><span class="num">SYS.01</span><span class="ttl" data-i18n="services.s1.title">Custom Websites</span><span class="desc" data-i18n="services.s1.desc">Conversion-focused marketing sites, designed and built from scratch.</span></div>
-      <div class="sys reveal"><span class="num">SYS.02</span><span class="ttl" data-i18n="services.s2.title">Web Apps &amp; Platforms</span><span class="desc" data-i18n="services.s2.desc">Dashboards, portals and SaaS products that scale with you.</span></div>
-      <div class="sys reveal"><span class="num">SYS.03</span><span class="ttl" data-i18n="services.s3.title">E-Commerce</span><span class="desc" data-i18n="services.s3.desc">Storefronts engineered to sell and simple to manage.</span></div>
-      <div class="sys reveal"><span class="num">SYS.04</span><span class="ttl" data-i18n="services.s4.title">Mobile Apps</span><span class="desc" data-i18n="services.s4.desc">iOS and Android experiences your customers keep using.</span></div>
-      <div class="sys reveal"><span class="num">SYS.05</span><span class="ttl" data-i18n="services.s5.title">SEO &amp; Performance</span><span class="desc" data-i18n="services.s5.desc">Speed and search visibility that compound over time.</span></div>
-      <div class="sys reveal"><span class="num">SYS.06</span><span class="ttl" data-i18n="services.s6.title">Branding &amp; Design</span><span class="desc" data-i18n="services.s6.desc">Identity and interfaces that look the part.</span></div>
-      <div class="sys reveal"><span class="num">SYS.07</span><span class="ttl" data-i18n="services.s7.title">Automation &amp; Integrations</span><span class="desc" data-i18n="services.s7.desc">Connect your tools and remove the busywork.</span></div>
-      <div class="sys reveal"><span class="num">SYS.08</span><span class="ttl" data-i18n="services.s8.title">Maintenance &amp; Support</span><span class="desc" data-i18n="services.s8.desc">We keep everything fast, secure and online.</span></div>
-      <div class="sys reveal"><span class="num">SYS.09</span><span class="ttl" data-i18n="services.s9.title">Technical Audits</span><span class="desc" data-i18n="services.s9.desc">Code, security and performance reviews with a prioritized fix list.</span></div>
-      <div class="sys reveal"><span class="num">SYS.10</span><span class="ttl" data-i18n="services.s10.title">DevOps &amp; Cloud</span><span class="desc" data-i18n="services.s10.desc">Hosting, CI/CD pipelines and infrastructure that just works.</span></div>
+    <div class="orbit-map reveal" id="orbitMap">
+      <svg class="orbit-path" aria-hidden="true"><path id="orbitPath" d=""/></svg>
+      <button type="button" class="node" data-idx="01" data-svc="s1" style="--x:5%;--y:64%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>
+        <span class="tip"><b data-i18n="services.s1.title">Custom Websites</b><i data-i18n="services.s1.desc">Conversion-focused marketing sites, designed and built from scratch.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="02" data-svc="s2" style="--x:14%;--y:30%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+        <span class="tip"><b data-i18n="services.s2.title">Web Apps &amp; Platforms</b><i data-i18n="services.s2.desc">Dashboards, portals and SaaS products that scale with you.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="03" data-svc="s3" style="--x:24%;--y:60%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+        <span class="tip"><b data-i18n="services.s3.title">E-Commerce</b><i data-i18n="services.s3.desc">Storefronts engineered to sell and simple to manage.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="04" data-svc="s4" style="--x:34%;--y:24%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+        <span class="tip"><b data-i18n="services.s4.title">Mobile Apps</b><i data-i18n="services.s4.desc">iOS and Android experiences your customers keep using.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="05" data-svc="s5" style="--x:45%;--y:52%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+        <span class="tip"><b data-i18n="services.s5.title">SEO &amp; Performance</b><i data-i18n="services.s5.desc">Speed and search visibility that compound over time.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="06" data-svc="s6" style="--x:56%;--y:16%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7-4-4-7 7-1 5 5-1z"/><path d="M15 8l4 4"/></svg>
+        <span class="tip"><b data-i18n="services.s6.title">Branding &amp; Design</b><i data-i18n="services.s6.desc">Identity and interfaces that look the part.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="07" data-svc="s7" style="--x:64%;--y:48%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+        <span class="tip"><b data-i18n="services.s7.title">Automation &amp; Integrations</b><i data-i18n="services.s7.desc">Connect your tools and remove the busywork.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="08" data-svc="s8" style="--x:74%;--y:18%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></svg>
+        <span class="tip"><b data-i18n="services.s8.title">Maintenance &amp; Support</b><i data-i18n="services.s8.desc">We keep everything fast, secure and online.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="09" data-svc="s9" style="--x:84%;--y:44%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span class="tip"><b data-i18n="services.s9.title">Technical Audits</b><i data-i18n="services.s9.desc">Code, security and performance reviews with a prioritized fix list.</i></span>
+      </button>
+      <button type="button" class="node" data-idx="10" data-svc="s10" style="--x:93%;--y:14%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18a4 4 0 010-8 6 6 0 0111.5 1.5A3.5 3.5 0 0117.5 18H6z"/></svg>
+        <span class="tip"><b data-i18n="services.s10.title">DevOps &amp; Cloud</b><i data-i18n="services.s10.desc">Hosting, CI/CD pipelines and infrastructure that just works.</i></span>
+      </button>
+      <div class="svc-panel" id="svcPanel" aria-live="polite">
+        <span class="svc-ico" id="svcIco"></span>
+        <span class="svc-idx" id="svcIdx">SYS.01 / 10</span>
+        <h3 id="svcTitle">Custom Websites</h3>
+        <p id="svcDesc">Conversion-focused marketing sites, designed and built from scratch.</p>
+      </div>
+      <span class="orbit-hint" data-i18n="systems.hint">Hover a node to inspect each service</span>
     </div>
   </section>
 
   <!-- telemetry (stats) -->
   <section class="telemetry slab" data-i18n-aria="stats.label" aria-label="Company highlights">
     <div class="sec-head reveal">
-      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="stats.tag">Telemetry</span></div>
-      <span class="sec-tag" data-i18n="stats.meta">Live mission data</span>
+      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="stats.tag">Track record</span></div>
+      <span class="sec-tag" data-i18n="stats.meta">In numbers</span>
     </div>
     <div class="stat-grid">
       <div class="stat reveal"><span class="t-id">TLM.01</span><div class="big" data-count="10">10<span class="plus">+</span></div><div class="lbl" data-i18n="stats.years">Years in business</div></div>
@@ -666,9 +749,9 @@
   <!-- mission brief (faq) -->
   <section id="faq" class="brief slab" aria-labelledby="faq-heading">
     <div class="sec-head reveal">
-      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="brief.tag">Mission brief</span>
+      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="brief.tag">Questions</span>
       <h2 id="faq-heading" data-i18n="brief.title">Frequently asked</h2></div>
-      <span class="sec-tag" data-i18n="brief.meta">Declassified</span>
+      <span class="sec-tag" data-i18n="brief.meta">Good to know</span>
     </div>
     <dl class="faq-list">
       <div class="faq-item reveal">
@@ -703,8 +786,8 @@
   <section id="contact" class="contact" aria-labelledby="contact-heading">
     <div class="contact-grid reveal">
       <div>
-        <span class="mono-tag" style="color:var(--accent)" data-i18n="contact.tag">Comms</span>
-        <h2 id="contact-heading" data-i18n="contact.title">Open a channel</h2>
+        <span class="mono-tag" style="color:var(--accent)" data-i18n="contact.tag">Contact</span>
+        <h2 id="contact-heading" data-i18n="contact.title">Get in touch</h2>
         <p data-i18n="contact.desc">Tell us what you're working on. We'll reply within one business day.</p>
         <a class="email" href="mailto:contact@onraven.ca">contact@onraven.ca</a>
       </div>
@@ -718,10 +801,10 @@
           <input id="rp-email" name="email" type="email" data-i18n-placeholder="contact.emailPh" placeholder="Email address" autocomplete="email" required>
         </div>
         <div class="fld">
-          <label for="rp-msg" data-i18n="contact.f3">FLD.03 — Payload</label>
+          <label for="rp-msg" data-i18n="contact.f3">FLD.03 — Message</label>
           <textarea id="rp-msg" name="message" rows="3" data-i18n-placeholder="contact.msgPh" placeholder="What do you need built?" required></textarea>
         </div>
-        <button class="btn btn-solid" id="contactSubmit" type="submit" data-i18n="contact.submit">Transmit &rarr;</button>
+        <button class="btn btn-solid" id="contactSubmit" type="submit" data-i18n="contact.submit">Send message &rarr;</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -748,39 +831,42 @@
       'a11y.openMenu': 'Open menu',
       'a11y.closeMenu': 'Close menu',
       'a11y.language': 'Language',
-      'nav.systems': 'Systems',
-      'nav.manifest': 'Manifest',
-      'nav.brief': 'Briefing',
-      'nav.cta': 'Transmit \u2192',
+      'nav.systems': 'Services',
+      'nav.manifest': 'Clients',
+      'nav.brief': 'FAQ',
+      'nav.cta': 'Contact \u2192',
       'boot.l1': 'RAVEN OS v2.0 // BOOT SEQUENCE',
       'boot.l2': 'GROUND STATION TORONTO ....... ONLINE',
       'boot.l3': 'SATELLITE UPLINK .............. LOCKED',
       'boot.l4': 'FLIGHT DECK ................... READY',
       'hud.coords': 'LAT 43.6532\u00B0N<br>LON 79.3832\u00B0W',
       'hud.deck': 'RAVEN-1 // FLIGHT DECK',
-      'hud.status': 'Systems online — accepting new missions',
-      'hud.scroll': 'Descend',
+      'hud.status': 'Accepting new projects',
+      'hud.scroll': 'Scroll',
+      'hud.signal': 'Signal',
+      'hud.signalLocal': 'Toronto \u2014 local link',
       'hero.title': 'We build websites & platforms that win customers',
       'hero.desc': 'Raven Platforms is a Toronto software studio. We design and engineer fast, modern digital products for ambitious businesses \u2014 from marketing sites to full web apps, DevOps and audits.',
-      'hero.cta': 'Initiate contact \u2193',
-      'hero.cta2': 'View flight manifest',
+      'hero.cta': 'Start your project \u2193',
+      'hero.cta2': 'Meet our clients',
       'manifest.srTitle': 'Clients',
-      'manifest.tag': 'Flight manifest',
+      'manifest.tag': 'Our clients',
       'manifest.label': 'Trusted by teams across North America & the Caribbean',
-      'missions.tag': 'Active missions',
-      'missions.title': 'Spacecraft in orbit',
-      'missions.count': '2 vehicles \u00B7 0 failures',
-      'missions.status': 'In orbit',
-      'missions.cta': 'Visit spacecraft \u2197',
-      'missions.m1.num': 'Mission 01',
+      'missions.tag': 'Our products',
+      'missions.title': 'Products we own',
+      'missions.count': '2 live products',
+      'missions.status': 'Live',
+      'missions.cta': 'Visit site \u2197',
+      'missions.m1.num': 'Product 01',
       'missions.m1.meta': 'Comms platform \u00B7 onraven.com',
       'missions.m1.desc': 'Our AI-powered customer communication platform \u2014 web chat, messaging, and engagement tools built for modern businesses.',
-      'missions.m2.num': 'Mission 02',
+      'missions.m2.num': 'Product 02',
       'missions.m2.meta': 'Health platform \u00B7 prevsi.com',
       'missions.m2.desc': 'Our at-home HIV prevention platform for Florida \u2014 free STI testing, licensed physicians, and PrEP delivered discreetly, always at no cost to the patient.',
-      'systems.tag': 'Flight systems',
-      'systems.title': 'Capabilities',
-      'systems.meta': '10 systems \u00B7 one crew',
+      'systems.tag': 'What we do',
+      'systems.title': 'Services',
+      'systems.meta': '10 services \u00B7 one team',
+      'systems.hint': 'Hover a node to inspect each service',
       'services.s1.title': 'Custom Websites',
       'services.s1.desc': 'Conversion-focused marketing sites, designed and built from scratch.',
       'services.s2.title': 'Web Apps & Platforms',
@@ -801,16 +887,16 @@
       'services.s9.desc': 'Code, security and performance reviews with a prioritized fix list.',
       'services.s10.title': 'DevOps & Cloud',
       'services.s10.desc': 'Hosting, CI/CD pipelines and infrastructure that just works.',
-      'stats.tag': 'Telemetry',
-      'stats.meta': 'Live mission data',
+      'stats.tag': 'Track record',
+      'stats.meta': 'In numbers',
       'stats.label': 'Company highlights',
       'stats.years': 'Years in business',
       'stats.projects': 'Projects delivered',
       'stats.industries': 'Industries served',
       'stats.countries': 'Countries served',
-      'brief.tag': 'Mission brief',
+      'brief.tag': 'Questions',
       'brief.title': 'Frequently asked',
-      'brief.meta': 'Declassified',
+      'brief.meta': 'Good to know',
       'faq.q1': 'What does Raven Platforms do?',
       'faq.a1': 'We are a Toronto-based digital product studio. We design and build custom websites, web apps, mobile apps, e-commerce stores, and automation systems for businesses across North America and the Caribbean.',
       'faq.q2': 'Where is Raven Platforms located?',
@@ -821,23 +907,23 @@
       'faq.a4': 'Email <a href="mailto:contact@onraven.ca">contact@onraven.ca</a> or use the contact form below. We typically reply within one business day.',
       'faq.q5': 'Do you take on audits, DevOps or freelance projects?',
       'faq.a5': 'Yes \u2014 alongside full product builds we take on technical audits, DevOps and cloud infrastructure, and focused freelance engagements, in Toronto or fully remote.',
-      'contact.tag': 'Comms',
-      'contact.title': 'Open a channel',
+      'contact.tag': 'Contact',
+      'contact.title': 'Get in touch',
       'contact.desc': 'Tell us what you\u2019re working on. We\u2019ll reply within one business day.',
       'contact.f1': 'FLD.01 \u2014 Name',
       'contact.f2': 'FLD.02 \u2014 Email',
-      'contact.f3': 'FLD.03 \u2014 Payload',
+      'contact.f3': 'FLD.03 \u2014 Message',
       'contact.namePh': 'Your name',
       'contact.emailPh': 'Email address',
       'contact.msgPh': 'What do you need built?',
-      'contact.submit': 'Transmit \u2192',
-      'contact.sending': 'Transmitting\u2026',
-      'contact.fillAll': 'All fields required before launch.',
-      'contact.success': 'Transmission received \u2014 confirmation inbound.',
-      'contact.error': 'Transmission failed \u2014 email contact@onraven.ca.',
-      'contact.errorGeneric': 'Signal lost.',
+      'contact.submit': 'Send message \u2192',
+      'contact.sending': 'Sending\u2026',
+      'contact.fillAll': 'Please fill in all fields.',
+      'contact.success': 'Message sent \u2014 check your inbox for a confirmation.',
+      'contact.error': 'Unable to send \u2014 email contact@onraven.ca.',
+      'contact.errorGeneric': 'Something went wrong.',
       'footer.line1': 'Raven Platforms Inc. \u00B7 Ground Station Toronto \u00B7 43.6532\u00B0N 79.3832\u00B0W',
-      'footer.line2': '\u00A9 2026 \u2014 End of transmission'
+      'footer.line2': '\u00A9 2026 \u2014 All systems go'
     },
     es: {
       'meta.title': 'Dise\u00f1o web y desarrollo de software en Toronto | Raven Platforms Inc.',
@@ -847,39 +933,42 @@
       'a11y.openMenu': 'Abrir men\u00fa',
       'a11y.closeMenu': 'Cerrar men\u00fa',
       'a11y.language': 'Idioma',
-      'nav.systems': 'Sistemas',
-      'nav.manifest': 'Manifiesto',
-      'nav.brief': 'Briefing',
-      'nav.cta': 'Transmitir \u2192',
+      'nav.systems': 'Servicios',
+      'nav.manifest': 'Clientes',
+      'nav.brief': 'Preguntas',
+      'nav.cta': 'Contacto \u2192',
       'boot.l1': 'RAVEN OS v2.0 // SECUENCIA DE ARRANQUE',
       'boot.l2': 'ESTACI\u00D3N TERRENA TORONTO ..... EN L\u00CDNEA',
       'boot.l3': 'ENLACE SATELITAL .............. FIJADO',
       'boot.l4': 'CABINA DE VUELO .............. LISTA',
       'hud.coords': 'LAT 43.6532\u00B0N<br>LON 79.3832\u00B0W',
       'hud.deck': 'RAVEN-1 // CABINA DE VUELO',
-      'hud.status': 'Sistemas en l\u00ednea — aceptando nuevas misiones',
-      'hud.scroll': 'Descender',
+      'hud.status': 'Aceptando nuevos proyectos',
+      'hud.scroll': 'Desliza',
+      'hud.signal': 'Se\u00f1al',
+      'hud.signalLocal': 'Toronto \u2014 enlace local',
       'hero.title': 'Construimos sitios web y plataformas que conquistan clientes',
       'hero.desc': 'Raven Platforms es un estudio de software de Toronto. Dise\u00f1amos y desarrollamos productos digitales modernos y r\u00e1pidos para empresas ambiciosas \u2014 desde sitios de marketing hasta apps web, DevOps y auditor\u00edas.',
-      'hero.cta': 'Iniciar contacto \u2193',
-      'hero.cta2': 'Ver manifiesto de vuelo',
+      'hero.cta': 'Inicia tu proyecto \u2193',
+      'hero.cta2': 'Conoce a nuestros clientes',
       'manifest.srTitle': 'Clientes',
-      'manifest.tag': 'Manifiesto de vuelo',
+      'manifest.tag': 'Nuestros clientes',
       'manifest.label': 'Con la confianza de equipos en Am\u00e9rica del Norte y el Caribe',
-      'missions.tag': 'Misiones activas',
-      'missions.title': 'Naves en \u00f3rbita',
-      'missions.count': '2 veh\u00edculos \u00B7 0 fallos',
-      'missions.status': 'En \u00f3rbita',
-      'missions.cta': 'Visitar nave \u2197',
-      'missions.m1.num': 'Misi\u00f3n 01',
+      'missions.tag': 'Nuestros productos',
+      'missions.title': 'Productos propios',
+      'missions.count': '2 productos en l\u00ednea',
+      'missions.status': 'En l\u00ednea',
+      'missions.cta': 'Visitar sitio \u2197',
+      'missions.m1.num': 'Producto 01',
       'missions.m1.meta': 'Plataforma de comunicaci\u00f3n \u00B7 onraven.com',
       'missions.m1.desc': 'Nuestra plataforma de comunicaci\u00f3n con clientes impulsada por IA \u2014 chat web, mensajer\u00eda y herramientas de engagement para empresas modernas.',
-      'missions.m2.num': 'Misi\u00f3n 02',
+      'missions.m2.num': 'Producto 02',
       'missions.m2.meta': 'Plataforma de salud \u00B7 prevsi.com',
       'missions.m2.desc': 'Nuestra plataforma de prevenci\u00f3n del VIH en casa para Florida \u2014 pruebas de ITS, m\u00e9dicos licenciados y PrEP a domicilio, siempre a costo cero para el paciente.',
-      'systems.tag': 'Sistemas de vuelo',
-      'systems.title': 'Capacidades',
-      'systems.meta': '10 sistemas \u00B7 una tripulaci\u00f3n',
+      'systems.tag': 'Qu\u00e9 hacemos',
+      'systems.title': 'Servicios',
+      'systems.meta': '10 servicios \u00B7 un equipo',
+      'systems.hint': 'Pasa el cursor sobre cada nodo',
       'services.s1.title': 'Sitios web a medida',
       'services.s1.desc': 'Sitios de marketing enfocados en conversi\u00f3n, dise\u00f1ados y desarrollados desde cero.',
       'services.s2.title': 'Apps web y plataformas',
@@ -900,16 +989,16 @@
       'services.s9.desc': 'Revisiones de c\u00f3digo, seguridad y rendimiento con una lista de correcciones priorizada.',
       'services.s10.title': 'DevOps y nube',
       'services.s10.desc': 'Hosting, pipelines CI/CD e infraestructura que simplemente funciona.',
-      'stats.tag': 'Telemetr\u00eda',
-      'stats.meta': 'Datos de misi\u00f3n en vivo',
+      'stats.tag': 'Trayectoria',
+      'stats.meta': 'En n\u00fameros',
       'stats.label': 'Datos destacados',
       'stats.years': 'A\u00f1os en el mercado',
       'stats.projects': 'Proyectos entregados',
       'stats.industries': 'Industrias atendidas',
       'stats.countries': 'Pa\u00edses atendidos',
-      'brief.tag': 'Briefing de misi\u00f3n',
+      'brief.tag': 'Preguntas',
       'brief.title': 'Preguntas frecuentes',
-      'brief.meta': 'Desclasificado',
+      'brief.meta': 'Bueno saber',
       'faq.q1': '\u00bfQu\u00e9 hace Raven Platforms?',
       'faq.a1': 'Somos un estudio de productos digitales con sede en Toronto. Dise\u00f1amos y desarrollamos sitios web, aplicaciones web, apps m\u00f3viles, tiendas de comercio electr\u00f3nico y sistemas de automatizaci\u00f3n para empresas en Am\u00e9rica del Norte y el Caribe.',
       'faq.q2': '\u00bfD\u00f3nde est\u00e1 ubicada Raven Platforms?',
@@ -920,8 +1009,8 @@
       'faq.a4': 'Escr\u00edbenos a <a href="mailto:contact@onraven.ca">contact@onraven.ca</a> o usa el formulario de contacto. Normalmente respondemos en un d\u00eda h\u00e1bil.',
       'faq.q5': '\u00bfHacen auditor\u00edas, DevOps o proyectos freelance?',
       'faq.a5': 'S\u00ed \u2014 adem\u00e1s de proyectos completos, realizamos auditor\u00edas t\u00e9cnicas, trabajo de DevOps e infraestructura cloud, y colaboraciones freelance puntuales, en Toronto o 100% remoto.',
-      'contact.tag': 'Comunicaciones',
-      'contact.title': 'Abrir un canal',
+      'contact.tag': 'Contacto',
+      'contact.title': 'Hablemos',
       'contact.desc': 'Cu\u00e9ntanos en qu\u00e9 est\u00e1s trabajando. Respondemos en un d\u00eda h\u00e1bil.',
       'contact.f1': 'FLD.01 \u2014 Nombre',
       'contact.f2': 'FLD.02 \u2014 Correo',
@@ -929,14 +1018,14 @@
       'contact.namePh': 'Tu nombre',
       'contact.emailPh': 'Correo electr\u00f3nico',
       'contact.msgPh': '\u00bfQu\u00e9 necesitas construir?',
-      'contact.submit': 'Transmitir \u2192',
-      'contact.sending': 'Transmitiendo\u2026',
-      'contact.fillAll': 'Todos los campos son obligatorios antes del lanzamiento.',
-      'contact.success': 'Transmisi\u00f3n recibida \u2014 confirmaci\u00f3n en camino.',
-      'contact.error': 'Transmisi\u00f3n fallida \u2014 escr\u00edbenos a contact@onraven.ca.',
-      'contact.errorGeneric': 'Se\u00f1al perdida.',
+      'contact.submit': 'Enviar mensaje \u2192',
+      'contact.sending': 'Enviando\u2026',
+      'contact.fillAll': 'Por favor completa todos los campos.',
+      'contact.success': 'Mensaje enviado \u2014 revisa tu bandeja de entrada.',
+      'contact.error': 'No se pudo enviar \u2014 escr\u00edbenos a contact@onraven.ca.',
+      'contact.errorGeneric': 'Algo sali\u00f3 mal.',
       'footer.line1': 'Raven Platforms Inc. \u00B7 Estaci\u00f3n Terrena Toronto \u00B7 43.6532\u00B0N 79.3832\u00B0W',
-      'footer.line2': '\u00A9 2026 \u2014 Fin de la transmisi\u00f3n'
+      'footer.line2': '\u00A9 2026 \u2014 Todos los sistemas en marcha'
     }
   };
 
@@ -978,6 +1067,13 @@
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+
+    var sig = window.__ravenSignal, sigEl = document.getElementById('signalHud');
+    if (sig && sigEl) {
+      sigEl.textContent = sig.local
+        ? t('hud.signal') + ' // ' + t('hud.signalLocal')
+        : t('hud.signal') + ' // ' + sig.city.toUpperCase() + ' \u2192 TORONTO';
+    }
     try { localStorage.setItem('rp-lang', lang); } catch (e) {}
     if (window.history && window.history.replaceState) {
       var url = new URL(window.location.href);
@@ -1065,6 +1161,54 @@
     }
     track.innerHTML = html + html;
   }
+
+  // ---------- service constellation ----------
+  (function () {
+    var map = document.getElementById('orbitMap');
+    if (!map) return;
+    var path = document.getElementById('orbitPath');
+    var nodes = Array.prototype.slice.call(map.querySelectorAll('.node'));
+    var panel = document.getElementById('svcPanel');
+    var idxEl = document.getElementById('svcIdx');
+    var icoEl = document.getElementById('svcIco');
+    var ttlEl = document.getElementById('svcTitle');
+    var dscEl = document.getElementById('svcDesc');
+
+    // smooth curve through node centers (offset coords ignore reveal transforms)
+    function drawPath() {
+      if (!path || !nodes.length) return;
+      var pts = nodes.map(function (n) { return [n.offsetLeft, n.offsetTop]; });
+      var d = 'M ' + pts[0][0] + ' ' + pts[0][1];
+      for (var i = 1; i < pts.length; i++) {
+        var mx = (pts[i - 1][0] + pts[i][0]) / 2;
+        d += ' C ' + mx + ' ' + pts[i - 1][1] + ', ' + mx + ' ' + pts[i][1] +
+             ', ' + pts[i][0] + ' ' + pts[i][1];
+      }
+      path.setAttribute('d', d);
+    }
+
+    function activate(node) {
+      nodes.forEach(function (n) { n.classList.remove('on'); });
+      node.classList.add('on');
+      var s = node.getAttribute('data-svc');
+      idxEl.textContent = 'SYS.' + node.getAttribute('data-idx') + ' / 10';
+      ttlEl.textContent = t('services.' + s + '.title');
+      dscEl.textContent = t('services.' + s + '.desc');
+      icoEl.innerHTML = node.querySelector('svg').outerHTML;
+      panel.classList.remove('flash');
+      void panel.offsetWidth;
+      panel.classList.add('flash');
+    }
+
+    nodes.forEach(function (n) {
+      n.addEventListener('mouseenter', function () { activate(n); });
+      n.addEventListener('focus', function () { activate(n); });
+      n.addEventListener('click', function () { activate(n); });
+    });
+    window.addEventListener('resize', drawPath);
+    drawPath();
+    activate(nodes[0]);
+  })();
 
   // ---------- scroll reveal (panels coming online) ----------
   var reveals = document.querySelectorAll('.reveal');
@@ -1291,6 +1435,69 @@
     orbit.rotation.set(Math.PI * 0.42, -0.2, -0.28);
     planet.add(orbit);
     scene.add(planet);
+    // orient Toronto toward the camera so the uplink arc greets the visitor
+    planet.rotation.y = -( (-79.3832 + 180) * Math.PI / 180 );
+
+    // ---- visitor uplink: estimated from browser timezone, no permission needed ----
+    var TZ_COORDS = {
+      'America/Toronto':[43.65,-79.38],'America/New_York':[40.71,-74.01],
+      'America/Chicago':[41.88,-87.63],'America/Denver':[39.74,-104.99],
+      'America/Los_Angeles':[34.05,-118.24],'America/Vancouver':[49.28,-123.12],
+      'America/Montreal':[45.5,-73.57],'America/Winnipeg':[49.9,-97.14],
+      'America/Mexico_City':[19.43,-99.13],'America/Bogota':[4.71,-74.07],
+      'America/Santo_Domingo':[18.49,-69.93],'America/Lima':[-12.05,-77.04],
+      'America/Santiago':[-33.45,-70.67],'America/Sao_Paulo':[-23.55,-46.63],
+      'America/Argentina/Buenos_Aires':[-34.6,-58.38],'America/Caracas':[10.48,-66.9],
+      'Europe/London':[51.51,-0.13],'Europe/Madrid':[40.42,-3.7],
+      'Europe/Paris':[48.86,2.35],'Europe/Berlin':[52.52,13.41],
+      'Europe/Rome':[41.9,12.5],'Asia/Dubai':[25.2,55.27],
+      'Asia/Kolkata':[19.08,72.88],'Asia/Singapore':[1.35,103.82],
+      'Asia/Tokyo':[35.68,139.69],'Australia/Sydney':[-33.87,151.21],
+      'Pacific/Auckland':[-36.85,174.76],'Africa/Lagos':[6.52,3.38]
+    };
+    var tzName = '';
+    try { tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var cityName = tzName ? tzName.split('/').pop().replace(/_/g, ' ') : 'Toronto';
+    var HOME = [43.6532, -79.3832];
+    var visitor = TZ_COORDS[tzName] || HOME;
+    var isLocal = Math.abs(visitor[0] - HOME[0]) < 0.5 && Math.abs(visitor[1] - HOME[1]) < 0.5;
+
+    function latLon(lat, lon, r) {
+      var phi = (90 - lat) * Math.PI / 180;
+      var theta = (lon + 180) * Math.PI / 180;
+      return new THREE.Vector3().setFromSphericalCoords(r, phi, theta);
+    }
+    function beacon(lat, lon, color) {
+      var g = new THREE.Group();
+      g.add(new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10), new THREE.MeshBasicMaterial({ color: color })));
+      g.add(new THREE.Mesh(new THREE.SphereGeometry(0.14, 10, 10),
+        new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.3 })));
+      g.position.copy(latLon(lat, lon, R * 1.01));
+      return g;
+    }
+    planet.add(beacon(HOME[0], HOME[1], 0xffffff)); // Toronto HQ
+    var sigCurve = null, sigDot = null;
+    if (!isLocal) {
+      planet.add(beacon(visitor[0], visitor[1], 0xa855f7));
+      var va = latLon(visitor[0], visitor[1], R * 1.01);
+      var vb = latLon(HOME[0], HOME[1], R * 1.01);
+      var vmid = va.clone().add(vb).normalize().multiplyScalar(R * 2.15);
+      sigCurve = new THREE.QuadraticBezierCurve3(va, vmid, vb);
+      planet.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(sigCurve.getPoints(64)),
+        new THREE.LineBasicMaterial({ color: 0xa855f7, transparent: true, opacity: 0.55 })
+      ));
+      sigDot = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8),
+        new THREE.MeshBasicMaterial({ color: 0xe9d5ff }));
+      planet.add(sigDot);
+    }
+    window.__ravenSignal = { city: cityName, local: isLocal };
+    var sigEl = document.getElementById('signalHud');
+    if (sigEl) {
+      sigEl.textContent = isLocal
+        ? (window.t ? t('hud.signal') : 'Signal') + ' // ' + (window.t ? t('hud.signalLocal') : 'Toronto — local link')
+        : (window.t ? t('hud.signal') : 'Signal') + ' // ' + cityName.toUpperCase() + ' \u2192 TORONTO';
+    }
 
     // planet recedes once you leave the flight deck
     var planetMats = [];
@@ -1335,6 +1542,7 @@
       starsA.material.opacity = 0.72 + 0.16 * Math.sin(t * 0.9);
       var a = t * 0.55;
       sat.position.set(Math.cos(a) * R * 1.7, Math.sin(a) * R * 1.7, 0);
+      if (sigDot && sigCurve) sigDot.position.copy(sigCurve.getPoint((t * 0.22) % 1));
       mx += (tx - mx) * 0.045; my += (ty - my) * 0.045;
       camera.position.x = mx * 1.15;
       camera.position.y = -my * 0.75;
