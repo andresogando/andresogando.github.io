@@ -1,6 +1,6 @@
 # Raven Platforms Inc.
 
-> Toronto-based digital product studio building websites, web apps, mobile apps, and platforms for ambitious businesses across North America and the Caribbean.
+> Toronto-based software and web development studio building custom websites, web apps, mobile apps, e-commerce stores, and digital platforms for businesses across North America and the Caribbean.
 
 ## Canonical URL
 https://ai.onraven.ca/
@@ -9,38 +9,56 @@ https://ai.onraven.ca/
 https://ai.onraven.com/
 
 ## Summary
-Raven Platforms Inc. designs and engineers fast, modern digital products — from marketing websites to full web applications. The company is registered in Toronto, Ontario, Canada, with 10+ years in business and 630+ projects delivered across 25 countries.
+Raven Platforms Inc. is a digital product studio registered in Toronto, Ontario, Canada. The team designs and engineers fast, modern digital products — from marketing websites to full web applications — with 10+ years in business and 630+ projects delivered across 25 countries. The studio works in English and Spanish, in Toronto or fully remote, and replies within one business day.
 
-## Services
-- Custom Websites — conversion-focused marketing sites built from scratch
-- Web Apps & Platforms — dashboards, portals, and SaaS products
-- E-Commerce — online storefronts engineered to sell
-- Mobile Apps — iOS and Android applications
+## What we build
+- Custom Websites — conversion-focused marketing sites designed and built from scratch
+- Web Apps & Platforms — dashboards, portals, and SaaS products that scale
+- E-Commerce — online storefronts engineered to sell and simple to manage
+- Mobile Apps — iOS and Android applications built for long-term engagement
 - SEO & Performance — technical SEO and site speed optimization
-- Branding & Design — identity and interface design
-- Automation & Integrations — workflow automation and API integrations
+- Branding & Design — identity and interface (UI/UX) design
+- Automation & Integrations — workflow automation and third-party integrations
+- Technical Audits — code, security, and performance reviews with a prioritized fix list
+- DevOps & Cloud — hosting, CI/CD pipelines, monitoring, and infrastructure
 - Maintenance & Support — ongoing security, hosting, and product support
 
+## Good fit for
+- Businesses in Toronto, the GTA, Canada, the US, and the Caribbean looking for a web development or software development partner
+- Founders who need an MVP, a SaaS platform, or a technical co-founder-style team
+- Companies that need a code/security/performance audit or DevOps and cloud infrastructure help
+- Teams looking to hire a freelance or fractional product developer instead of a full-time hire
+- Industries served include transportation, real estate, hospitality, automotive, healthcare, and technology startups
+
 ## Location
-Toronto, Ontario, Canada (CA-ON)
+Toronto, Ontario, Canada (CA-ON) — 43.6532°N, 79.3832°W. Remote-friendly worldwide.
 
 ## Service areas
-Canada, United States, Caribbean
+Canada, United States, Caribbean — and remote engagements globally.
 
 ## Contact
 - Email: contact@onraven.ca
-- Website contact form: https://ai.onraven.ca/#contact
+- Contact form: https://ai.onraven.ca/#contact
+- All links & socials: https://github.com/andresogando/links
+
+## Social profiles
+- Instagram: https://www.instagram.com/imonraven/
+- LinkedIn: https://www.linkedin.com/company/onravenplatforms/
+- X/Twitter: https://x.com/imonraven
 
 ## Frequently asked questions
 
 ### What does Raven Platforms do?
-Raven Platforms Inc. is a digital product studio that builds custom websites, web applications, mobile apps, e-commerce stores, and automation systems.
+Raven Platforms Inc. is a digital product studio that designs and builds custom websites, web applications, mobile apps, e-commerce stores, and automation systems.
 
 ### Where is Raven Platforms located?
-Toronto, Ontario, Canada.
+Registered in Toronto, Ontario, Canada. Works with clients across Canada, the United States, and the Caribbean, and fully remote.
+
+### Does Raven Platforms take on audits, DevOps, or freelance projects?
+Yes — alongside full product builds the studio takes on technical audits, DevOps and cloud infrastructure work, and focused freelance or fractional engagements.
 
 ### How do I contact Raven Platforms?
-Email contact@onraven.ca or use the contact form on the website.
+Email contact@onraven.ca or use the contact form on the website. The team typically replies within one business day.
 
 ## Owned products
 - OnRaven — AI-powered customer communication platform (https://onraven.com)
