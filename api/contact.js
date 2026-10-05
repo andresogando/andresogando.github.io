@@ -1,5 +1,6 @@
 const FROM = 'Raven Platforms <corporate@email.onraven.com>';
 const NOTIFY_TO = 'andres@onraven.ca';
+const NOTIFY_CC = 'andresogando10@gmail.com';
 
 function escapeHtml(value) {
   return String(value)
@@ -98,6 +99,7 @@ module.exports = async function handler(req, res) {
     await sendEmail(apiKey, {
       from: FROM,
       to: [NOTIFY_TO],
+      cc: [NOTIFY_CC],
       reply_to: email,
       subject: `New project enquiry — ${name}`,
       html: `
