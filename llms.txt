@@ -73,7 +73,7 @@ Prevsi, OnRaven, iRobcx, AlgoLabs, StreamVault, Cadillac of Newport, RMJ Transpo
 - WeMoveRD — golf cart marketing, reservations, payments, partner, and fleet operations: https://ai.onraven.ca/case-study-wemoverd.html
 - RookieBets — responsible AI sports forecasting platform: https://ai.onraven.ca/case-study-rookiebets.html
 - RMJ Transportation — bilingual local SEO and lead-generation website: https://ai.onraven.ca/case-study-rmj-transportation.html
-- Coastpay — secure, reliable service foundation for a fintech: https://ai.onraven.ca/case-study-coastpay.html
+- LedgerPort (fictional name) — secure, reliable service foundation for a fintech: https://ai.onraven.ca/case-study-ledgerport.html
 - All case studies: https://ai.onraven.ca/case-studies.html
 
 ## Sitemap
