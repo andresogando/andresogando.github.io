@@ -454,6 +454,35 @@
   .faq-item dd{font-size:14.5px;line-height:1.65;color:#b0b6cd;margin:0;}
   .faq-item dd a{color:var(--accent);}
 
+  /* ---------- site gallery ---------- */
+  .gallery{padding:clamp(60px,9vw,96px) var(--pad);}
+  .site-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:20px;}
+  .site-card{position:relative;display:flex;flex-direction:column;text-decoration:none;
+    border:1px solid var(--line);background:rgba(7,9,17,.55);
+    transition:border-color .25s,background .25s,transform .25s;}
+  .site-card::before,.site-card::after{content:'';position:absolute;width:14px;height:14px;
+    border-color:var(--accent);border-style:solid;opacity:0;transition:opacity .25s;z-index:2;}
+  .site-card::before{top:-1px;left:-1px;border-width:1px 0 0 1px;}
+  .site-card::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0;}
+  .site-card:hover{border-color:var(--line-strong);background:rgba(12,15,28,.7);transform:translateY(-3px);}
+  .site-card:hover::before,.site-card:hover::after{opacity:1;}
+  .site-shot{position:relative;display:block;aspect-ratio:8/5;overflow:hidden;
+    border-bottom:1px solid var(--line);background:var(--panel-hard);}
+  .site-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
+    filter:saturate(.9);transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .3s;}
+  .site-card:hover .site-shot img{transform:scale(1.045);filter:saturate(1.05);}
+  .site-live{position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:7px;
+    padding:5px 10px;font:500 9px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ok);background:rgba(4,6,12,.78);border:1px solid var(--line);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .site-live .ok-dot{width:5px;height:5px;}
+  .site-info{display:flex;flex-direction:column;padding:15px 17px 17px;}
+  .site-info .s-num{font:500 9.5px var(--mono);letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  .site-info h3{font:600 16.5px/1.25 var(--grot);letter-spacing:.01em;text-transform:uppercase;
+    margin:5px 0 4px;color:var(--star);}
+  .site-info .s-meta{font:500 10px var(--mono);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent);line-height:1.55;}
+
   /* ---------- transmission (contact) ---------- */
   .contact{padding:clamp(60px,9vw,96px) var(--pad);border-top:1px solid var(--line);}
   .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -613,6 +642,7 @@
       <a href="#services" data-i18n="nav.systems">Services</a>
       <a href="#work" data-i18n="nav.manifest">Clients</a>
       <a href="case-studies.html" data-i18n="nav.cases">Case studies</a>
+      <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
       <a href="#faq" data-i18n="nav.brief">FAQ</a>
       <div class="nav-products">
         <a href="https://onraven.com" class="nav-spotlight" target="_blank" rel="noopener noreferrer">OnRaven <span aria-hidden="true">&nearr;</span></a>
@@ -762,6 +792,457 @@
     </div>
   </section>
 
+  <!-- site gallery (recent launches) -->
+  <section id="gallery" class="gallery slab" aria-labelledby="gallery-heading">
+    <div class="sec-head reveal">
+      <div><span class="mono-tag" style="color:var(--accent)" data-i18n="gallery.tag">Recent sites</span>
+      <h2 id="gallery-heading" data-i18n="gallery.title">Site gallery</h2></div>
+      <span class="sec-tag" data-i18n="gallery.meta">40 launches &middot; Oct 2026</span>
+    </div>
+    <div class="site-grid">
+      <a class="site-card reveal" href="https://keep-current-electrical-services-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/keep-current-electrical.jpg" alt="Keep Current Electrical Services website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.01</span>
+          <h3>Keep Current Electrical Services</h3>
+          <span class="s-meta">Electrician · Etobicoke, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://ultimate-auto-body-and-mechanic-preview.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/ultimate-auto-body.jpg" alt="Ultimate Auto Body &amp; Mechanic website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.02</span>
+          <h3>Ultimate Auto Body &amp; Mechanic</h3>
+          <span class="s-meta">Auto body &amp; repair · Scarborough, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://proflow-plumber-of-north-york-preview.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/proflow-plumber.jpg" alt="ProFlow Plumber of North York website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.03</span>
+          <h3>ProFlow Plumber of North York</h3>
+          <span class="s-meta">Plumber · North York, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://sb-motors-and-locksmith-preview.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/sb-motors-locksmith.jpg" alt="SB Motors &amp; Locksmith website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.04</span>
+          <h3>SB Motors &amp; Locksmith</h3>
+          <span class="s-meta">Locksmith · Scarborough, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://nexus-tire-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/nexus-tire.jpg" alt="Nexus Tire website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.05</span>
+          <h3>Nexus Tire</h3>
+          <span class="s-meta">Tire shop · Etobicoke, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://ink-detailing-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/ink-detailing.jpg" alt="Ink Detailing website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.06</span>
+          <h3>Ink Detailing</h3>
+          <span class="s-meta">Car detailing · Mississauga</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://angel-s-alteration-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/angels-alteration.jpg" alt="Angel&#x27;s Alteration website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.07</span>
+          <h3>Angel&#x27;s Alteration</h3>
+          <span class="s-meta">Clothing alterations · North York, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://sai-cell-repair-preview.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/sai-cell-repair.jpg" alt="Sai Cell Repair website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.08</span>
+          <h3>Sai Cell Repair</h3>
+          <span class="s-meta">Phone &amp; laptop repair · Brampton</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/pure-view-exteriors/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/pure-view-exteriors.jpg" alt="Pure View Exteriors website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.09</span>
+          <h3>Pure View Exteriors</h3>
+          <span class="s-meta">Window cleaning · Vaughan</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://baytak-clean-company-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/baytak-clean.jpg" alt="Baytak Clean Company website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.10</span>
+          <h3>Baytak Clean Company</h3>
+          <span class="s-meta">House cleaning · Mississauga</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://cakes-by-me-bakery-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/cakes-by-me.jpg" alt="Cakes By Me Bakery website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.11</span>
+          <h3>Cakes By Me Bakery</h3>
+          <span class="s-meta">Custom cakes · Milton</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://fine-shoe-sales-repair-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/fine-shoe-repair.jpg" alt="Fine Shoe Sales &amp; Repair website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.12</span>
+          <h3>Fine Shoe Sales &amp; Repair</h3>
+          <span class="s-meta">Shoe repair · The Danforth, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://safe-wildlife-removal-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/safe-wildlife.jpg" alt="Safe Wildlife Removal website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.13</span>
+          <h3>Safe Wildlife Removal</h3>
+          <span class="s-meta">Wildlife removal · Mississauga</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://king-strachan-automotive-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/king-strachan-auto.jpg" alt="King &amp; Strachan Automotive website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.14</span>
+          <h3>King &amp; Strachan Automotive</h3>
+          <span class="s-meta">Auto repair &amp; tires · King West, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://casablanca-lounge-event-venue-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/casablanca-lounge.jpg" alt="Casablanca Lounge &amp; Event Venue website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.15</span>
+          <h3>Casablanca Lounge &amp; Event Venue</h3>
+          <span class="s-meta">Lounge &amp; event venue · Dundas West, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://auto-service-plus-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/auto-service-plus.jpg" alt="Auto Service Plus website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.16</span>
+          <h3>Auto Service Plus</h3>
+          <span class="s-meta">Auto repair · Richmond St W, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://spadina-auto-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/spadina-auto.jpg" alt="Spadina Auto website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.17</span>
+          <h3>Spadina Auto</h3>
+          <span class="s-meta">Auto repair &amp; towing · Strachan Ave, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://britex-construction-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/britex-construction.jpg" alt="Britex Construction website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.18</span>
+          <h3>Britex Construction</h3>
+          <span class="s-meta">Renovation · Richmond Hill</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://d-j-hardwood-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/dj-hardwood.jpg" alt="D&amp;J Hardwood website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.19</span>
+          <h3>D&amp;J Hardwood</h3>
+          <span class="s-meta">Hardwood flooring · Brampton</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://autoshield-glass-preview.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/autoshield-glass.jpg" alt="Autoshield Glass website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.20</span>
+          <h3>Autoshield Glass</h3>
+          <span class="s-meta">Auto glass · Scarborough, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/cache-upholstery/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/cache-upholstery.jpg" alt="Cache Upholstery website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.21</span>
+          <h3>Cache Upholstery</h3>
+          <span class="s-meta">Upholstery · North York, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/skytask-drywall-services/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/skytask-drywall.jpg" alt="Skytask Drywall Services website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.22</span>
+          <h3>Skytask Drywall Services</h3>
+          <span class="s-meta">Drywall &amp; painting · Ajax</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/mmm-moving-cleaning-and-junk-removal/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/mmm-moving.jpg" alt="MMM Moving Cleaning &amp; Junk Removal website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.23</span>
+          <h3>MMM Moving Cleaning &amp; Junk Removal</h3>
+          <span class="s-meta">Moving, cleaning &amp; junk removal · Scarborough, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/five-star-gta-interlocking-inc/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/five-star-interlocking.jpg" alt="Five Star GTA Interlocking website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.24</span>
+          <h3>Five Star GTA Interlocking</h3>
+          <span class="s-meta">Interlocking &amp; landscaping · Richmond Hill</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/the-grand-spice/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/grand-spice.jpg" alt="The Grand Spice website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.25</span>
+          <h3>The Grand Spice</h3>
+          <span class="s-meta">Home catering · Brampton</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/khan-driving-instructor/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/khan-driving.jpg" alt="Khan Driving Instructor website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.26</span>
+          <h3>Khan Driving Instructor</h3>
+          <span class="s-meta">Driving lessons · North York, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/king-west-village-cleaners-and-tailors/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/king-west-cleaners.jpg" alt="King West Village Cleaners &amp; Tailors website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.27</span>
+          <h3>King West Village Cleaners &amp; Tailors</h3>
+          <span class="s-meta">Dry cleaning &amp; tailoring · King West, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/downtown-fabrics/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/downtown-fabrics.jpg" alt="Downtown Fabrics website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.28</span>
+          <h3>Downtown Fabrics</h3>
+          <span class="s-meta">Fabric store · Queen St W, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/cellfix-toronto/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/cellfix-toronto.jpg" alt="CellFix Toronto website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.29</span>
+          <h3>CellFix Toronto</h3>
+          <span class="s-meta">Phone repair · Lower Ossington, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/mina-design-alteration/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/mina-design.jpg" alt="Mina Design &amp; Alteration website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.30</span>
+          <h3>Mina Design &amp; Alteration</h3>
+          <span class="s-meta">Tailor &amp; alterations · Spadina Ave, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/kingtown-dry-cleaners/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/kingtown-cleaners.jpg" alt="Kingtown Dry Cleaners website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.31</span>
+          <h3>Kingtown Dry Cleaners</h3>
+          <span class="s-meta">Dry cleaning &amp; alterations · King St W, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/mr-lee-s-dry-cleaning/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/mr-lees-cleaning.jpg" alt="Mr Lee&#x27;s Dry Cleaning website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.32</span>
+          <h3>Mr Lee&#x27;s Dry Cleaning</h3>
+          <span class="s-meta">Dry cleaning · King West / Liberty Village, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/q-hair-and-nail/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/q-hair-nail.jpg" alt="Q Hair &amp; Nail website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.33</span>
+          <h3>Q Hair &amp; Nail</h3>
+          <span class="s-meta">Nail &amp; hair salon · King St W, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/lash-and-brow-studio/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/lash-brow-studio.jpg" alt="Lash &amp; Brow Studio website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.34</span>
+          <h3>Lash &amp; Brow Studio</h3>
+          <span class="s-meta">Lash extensions &amp; brows · Yorkville, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/pearl-alterations-dry-cleaning/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/pearl-alterations.jpg" alt="Pearl Alterations Dry Cleaning website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.35</span>
+          <h3>Pearl Alterations Dry Cleaning</h3>
+          <span class="s-meta">Alterations &amp; dry cleaning · Rosedale, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/silver-4u/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/silver-4u.jpg" alt="Silver 4U website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.36</span>
+          <h3>Silver 4U</h3>
+          <span class="s-meta">Jeweller · Rosedale, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/yang-s-flower-market/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/yangs-flower-market.jpg" alt="Yang&#x27;s Flower Market website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.37</span>
+          <h3>Yang&#x27;s Flower Market</h3>
+          <span class="s-meta">Florist · Yorkville, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/walk-and-wear/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/walk-and-wear.jpg" alt="Walk &amp; Wear website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.38</span>
+          <h3>Walk &amp; Wear</h3>
+          <span class="s-meta">Shoe repair &amp; key cutting · Yonge &amp; Bloor, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/sean-s-shoe-repair/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/seans-shoe-repair.jpg" alt="Sean&#x27;s Shoe Repair website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.39</span>
+          <h3>Sean&#x27;s Shoe Repair</h3>
+          <span class="s-meta">Shoe repair · Yonge &amp; St Clair, Toronto</span>
+        </span>
+      </a>
+      <a class="site-card reveal" href="https://previews.ravenplatform.workers.dev/tailored-by-richa/" target="_blank" rel="noopener noreferrer">
+        <span class="site-shot">
+          <img src="gallery/tailored-by-richa.jpg" alt="Tailored by Richa website preview" loading="lazy" decoding="async" width="800" height="500">
+          <span class="site-live"><span class="ok-dot"></span><span data-i18n="gallery.live">Live</span></span>
+        </span>
+        <span class="site-info">
+          <span class="s-num">Site.40</span>
+          <h3>Tailored by Richa</h3>
+          <span class="s-meta">Clothing alterations · Rosedale, Toronto</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
   <!-- telemetry (stats) -->
   <section class="telemetry slab" data-i18n-aria="stats.label" aria-label="Company highlights">
     <div class="sec-head reveal">
@@ -865,6 +1346,7 @@
       'nav.systems': 'Services',
       'nav.manifest': 'Clients',
       'nav.cases': 'Case studies',
+      'nav.gallery': 'Gallery',
       'nav.brief': 'FAQ',
       'nav.cta': 'Contact \u2192',
       'boot.l1': 'RAVEN OS v2.0 // BOOT SEQUENCE',
@@ -930,6 +1412,10 @@
       'services.s9.desc': 'Code, security and performance reviews with a prioritized fix list.',
       'services.s10.title': 'DevOps & Cloud',
       'services.s10.desc': 'Hosting, CI/CD pipelines and infrastructure that just works.',
+      'gallery.tag': 'Recent sites',
+      'gallery.title': 'Site gallery',
+      'gallery.meta': '40 launches \u00B7 Oct 2026',
+      'gallery.live': 'Live',
       'stats.tag': 'Track record',
       'stats.meta': 'In numbers',
       'stats.label': 'Company highlights',
@@ -979,6 +1465,7 @@
       'nav.systems': 'Servicios',
       'nav.manifest': 'Clientes',
       'nav.cases': 'Casos de estudio',
+      'nav.gallery': 'Galer\u00EDa',
       'nav.brief': 'Preguntas',
       'nav.cta': 'Contacto \u2192',
       'boot.l1': 'RAVEN OS v2.0 // SECUENCIA DE ARRANQUE',
@@ -1044,6 +1531,10 @@
       'services.s9.desc': 'Revisiones de c\u00f3digo, seguridad y rendimiento con una lista de correcciones priorizada.',
       'services.s10.title': 'DevOps y nube',
       'services.s10.desc': 'Hosting, pipelines CI/CD e infraestructura que simplemente funciona.',
+      'gallery.tag': 'Sitios recientes',
+      'gallery.title': 'Galer\u00EDa de sitios',
+      'gallery.meta': '40 lanzamientos \u00B7 oct 2026',
+      'gallery.live': 'En l\u00EDnea',
       'stats.tag': 'Trayectoria',
       'stats.meta': 'En n\u00fameros',
       'stats.label': 'Datos destacados',
