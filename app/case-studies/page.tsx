@@ -1,7 +1,5 @@
-import { Grid } from '@astryxdesign/core/Grid';
 import { Heading } from '@astryxdesign/core/Heading';
 import { Text } from '@astryxdesign/core/Text';
-import { VStack } from '@astryxdesign/core/VStack';
 import type { Metadata } from 'next';
 import { CaseCard } from '../../components/case-studies/CaseCard';
 import { caseStudies } from '../../content/case-studies';
@@ -33,15 +31,13 @@ export const metadata: Metadata = {
 
 export default function CaseStudiesPage() {
   return (
-    <VStack className="home-section" gap={4}>
-      <Text type="supporting" color="secondary">
-        Selected client work
-      </Text>
+    <section className="home-section">
+      <p className="section-kicker">Selected client work</p>
       <Heading level={1}>Systems built for the real world</Heading>
-      <Text as="p">
+      <p className="section-lead">
         Seven field reports on turning ambitious ideas into software people can trust, operate, and grow.
-      </Text>
-      <Grid columns={{ minWidth: 260, max: 2 }} gap={4}>
+      </p>
+      <div className="plate-grid">
         {caseStudies.map((study) => (
           <CaseCard
             key={study.slug}
@@ -53,10 +49,10 @@ export default function CaseStudiesPage() {
             fictional={study.fictional}
           />
         ))}
-      </Grid>
+      </div>
       <Text type="supporting" color="secondary">
         ** Fictional client names used per NDA clauses.
       </Text>
-    </VStack>
+    </section>
   );
 }

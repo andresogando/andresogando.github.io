@@ -15,7 +15,7 @@ function RouterLink({ to, href, ...props }: ComponentProps<typeof NextLink> & { 
 export function SiteNav() {
   const { copy, lang, setLang } = useLang();
   return (
-    <header>
+    <header className="site-nav">
       <TopNav
         label="Primary"
         heading={<TopNavHeading heading="Raven Platforms" headingHref={withLang('/', lang)} as={RouterLink} />}
@@ -53,7 +53,9 @@ export function SiteNav() {
                 onClick={() => setLang('es')}
               />
             </div>
-            <Button label={copy.nav.cta} href={withLang('/#contact', lang)} as={RouterLink} variant="primary" />
+            <NextLink className="cta cta-primary cta-sm" href={withLang('/#contact', lang)}>
+              {copy.nav.cta}
+            </NextLink>
           </>
         }
       />

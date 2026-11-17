@@ -1,6 +1,6 @@
 {
   "name": "raven-platforms",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@astryxdesign/cli": "^0.7.16",
     "@astryxdesign/core": "^0.7.16",
+    "@astryxdesign/theme-gothic": "^0.7.16",
     "@astryxdesign/theme-neutral": "^0.7.16",
     "@stylexjs/stylex": "^0.19.2",
     "next": "16.4.6",

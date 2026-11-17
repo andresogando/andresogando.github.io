@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@astryxdesign/core/Button';
 import { Heading } from '@astryxdesign/core/Heading';
 import { Link } from '@astryxdesign/core/Link';
 import { Text } from '@astryxdesign/core/Text';
@@ -59,62 +58,62 @@ export function ContactForm() {
             : '';
 
   return (
-    <VStack as="section" id="contact" className="home-section" gap={2}>
+    <section id="contact" className="home-section">
+      <p className="section-kicker">Contact</p>
       <Heading level={2}>{copy.contact.title}</Heading>
-      <Text as="p">{copy.contact.description}</Text>
-      <Text as="p">
-        <Link href="mailto:contact@onraven.ca" isStandalone>
-          contact@onraven.ca
-        </Link>
-      </Text>
-      <form onSubmit={onSubmit}>
-        <VStack gap={2}>
-          <TextInput
-            label={copy.contact.namePh}
-            value={name}
-            onChange={setName}
-            placeholder={copy.contact.namePh}
-            htmlName="name"
-            autoComplete="name"
-            isRequired
-            isDisabled={isSending}
-            width="100%"
-          />
-          <TextInput
-            label={copy.contact.emailPh}
-            type="email"
-            value={email}
-            onChange={setEmail}
-            placeholder={copy.contact.emailPh}
-            htmlName="email"
-            autoComplete="email"
-            isRequired
-            isDisabled={isSending}
-            width="100%"
-          />
-          <TextArea
-            label={copy.contact.msgPh}
-            value={message}
-            onChange={setMessage}
-            placeholder={copy.contact.msgPh}
-            htmlName="message"
-            isRequired
-            isDisabled={isSending}
-            width="100%"
-          />
-          <Button
-            label={copy.contact.submit}
-            type="submit"
-            variant="primary"
-            isDisabled={isSending}
-          />
-          {statusText ? (
-            <Text as="p" role="status">
-              {statusText}
-            </Text>
-          ) : null}
-        </VStack>
-      </form>
-    </VStack>
+      <div className="contact-panel">
+        <div className="contact-aside">
+          <p className="section-lead">{copy.contact.description}</p>
+          <Link href="mailto:contact@onraven.ca" isStandalone>
+            contact@onraven.ca
+          </Link>
+        </div>
+        <form onSubmit={onSubmit}>
+          <VStack gap={2}>
+            <TextInput
+              label={copy.contact.namePh}
+              value={name}
+              onChange={setName}
+              placeholder={copy.contact.namePh}
+              htmlName="name"
+              autoComplete="name"
+              isRequired
+              isDisabled={isSending}
+              width="100%"
+            />
+            <TextInput
+              label={copy.contact.emailPh}
+              type="email"
+              value={email}
+              onChange={setEmail}
+              placeholder={copy.contact.emailPh}
+              htmlName="email"
+              autoComplete="email"
+              isRequired
+              isDisabled={isSending}
+              width="100%"
+            />
+            <TextArea
+              label={copy.contact.msgPh}
+              value={message}
+              onChange={setMessage}
+              placeholder={copy.contact.msgPh}
+              htmlName="message"
+              isRequired
+              isDisabled={isSending}
+              width="100%"
+            />
+            <button className="cta cta-primary" type="submit" disabled={isSending}>
+              {copy.contact.submit}
+            </button>
+            {statusText ? (
+              <Text as="p" role="status">
+                {statusText}
+              </Text>
+            ) : null}
+          </VStack>
+        </form>
+      </div>
+    </section>
   );
 }

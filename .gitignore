@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local worktrees
 .worktrees
+
+# hallmark local cache
+.hallmark
