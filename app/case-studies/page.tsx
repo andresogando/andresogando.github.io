@@ -5,11 +5,30 @@ import { VStack } from '@astryxdesign/core/VStack';
 import type { Metadata } from 'next';
 import { CaseCard } from '../../components/case-studies/CaseCard';
 import { caseStudies } from '../../content/case-studies';
+import { ogImage } from '../../lib/jsonld';
+
+const description =
+  'Explore how Raven Platforms designed and engineered healthcare, fintech, transportation, hospitality, membership, and AI forecasting products.';
 
 export const metadata: Metadata = {
   title: 'Case Studies',
-  description:
-    'Explore how Raven Platforms designed and engineered healthcare, fintech, transportation, hospitality, membership, and AI forecasting products.',
+  description,
+  alternates: { canonical: '/case-studies' },
+  openGraph: {
+    type: 'website',
+    siteName: 'Raven Platforms Inc.',
+    locale: 'en_CA',
+    title: 'Case Studies | Raven Platforms',
+    description: 'Inside the products, platforms, and systems we have built for ambitious teams.',
+    url: '/case-studies',
+    images: [ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Case Studies | Raven Platforms',
+    description,
+    images: [{ url: ogImage.url, alt: ogImage.alt }],
+  },
 };
 
 export default function CaseStudiesPage() {
