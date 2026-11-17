@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Theme } from '@astryxdesign/core/theme';
 import { themes, defaultThemeSlug } from '../astryx-themes';
+import { LangProvider } from '../lib/i18n';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-CA" data-theme="light">
       <body>
         <Theme theme={themes[defaultThemeSlug]} mode="light">
-          {children}
+          <LangProvider>{children}</LangProvider>
         </Theme>
       </body>
     </html>
