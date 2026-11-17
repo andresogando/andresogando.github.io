@@ -192,8 +192,8 @@ export const site: Record<Lang, SiteCopy> = {
       "error": "Unable to send — email contact@onraven.ca."
     },
     "footer": {
-      "line1": "Raven Platforms Inc. · Ground Station Toronto · 43.6532°N 79.3832°W",
-      "line2": "© 2026 — All systems go"
+      "line1": "Raven Platforms Inc. · Toronto",
+      "line2": "© 2026"
     }
   },
   "es": {
@@ -359,8 +359,8 @@ export const site: Record<Lang, SiteCopy> = {
       "error": "No se pudo enviar — escríbenos a contact@onraven.ca."
     },
     "footer": {
-      "line1": "Raven Platforms Inc. · Estación Terrena Toronto · 43.6532°N 79.3832°W",
-      "line2": "© 2026 — Todos los sistemas en marcha"
+      "line1": "Raven Platforms Inc. · Toronto",
+      "line2": "© 2026"
     }
   }
 };
