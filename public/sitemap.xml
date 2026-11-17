@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url><loc>https://ai.onraven.ca/</loc><lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority><xhtml:link rel="alternate" hreflang="en-CA" href="https://ai.onraven.ca/"/><xhtml:link rel="alternate" hreflang="en" href="https://ai.onraven.com/"/><xhtml:link rel="alternate" hreflang="es-CA" href="https://ai.onraven.ca/?lang=es"/><xhtml:link rel="alternate" hreflang="x-default" href="https://ai.onraven.ca/"/></url>
-  <url><loc>https://ai.onraven.ca/?lang=es</loc><lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.com/</loc><lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-studies.html</loc><lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-prevsi.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-foundrylane.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-wemoverd.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-rookiebets.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-rmj-transportation.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-ledgerport.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ai.onraven.ca/case-study-gatherstay.html</loc><lastmod>2026-10-05</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>1.0</priority><xhtml:link rel="alternate" hreflang="en-CA" href="https://ai.onraven.ca/"/><xhtml:link rel="alternate" hreflang="en" href="https://ai.onraven.com/"/><xhtml:link rel="alternate" hreflang="es-CA" href="https://ai.onraven.ca/?lang=es"/><xhtml:link rel="alternate" hreflang="x-default" href="https://ai.onraven.ca/"/></url>
+  <url><loc>https://ai.onraven.ca/?lang=es</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.com/</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/prevsi</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/foundrylane</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/wemoverd</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/rookiebets</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/rmj-transportation</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/ledgerport</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ai.onraven.ca/case-studies/gatherstay</loc><lastmod>2026-11-17</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
 </urlset>

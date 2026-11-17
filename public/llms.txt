@@ -68,14 +68,14 @@ Email contact@onraven.ca or use the contact form on the website. The team typica
 Prevsi, OnRaven, iRobcx, AlgoLabs, StreamVault, Cadillac of Newport, RMJ Transportation, HM Management, Coldwell Banker, WeMove RD, Bohemian Cap Cana, CareerSafe, OG Corp, Tacoma Pharmacy, Honda Dealer Affiliates, Acura Dealer Affiliates, HVAC Partners, Hospitality Groups
 
 ## Case studies
-- Prevsi — multilingual clinical platform with field-level PHI encryption: https://ai.onraven.ca/case-study-prevsi.html
-- FoundryLane** — formation, compliance, document, and membership workflows: https://ai.onraven.ca/case-study-foundrylane.html
-- WeMoveRD — golf cart marketing, reservations, payments, partner, and fleet operations: https://ai.onraven.ca/case-study-wemoverd.html
-- RookieBets — responsible AI sports forecasting platform: https://ai.onraven.ca/case-study-rookiebets.html
-- RMJ Transportation — bilingual local SEO and lead-generation website: https://ai.onraven.ca/case-study-rmj-transportation.html
-- LedgerPort** — secure, reliable service foundation for a fintech: https://ai.onraven.ca/case-study-ledgerport.html
-- GatherStay** — event-driven hotel booking platform with payments and operations tooling: https://ai.onraven.ca/case-study-gatherstay.html
-- All case studies: https://ai.onraven.ca/case-studies.html
+- Prevsi — multilingual clinical platform with field-level PHI encryption: https://ai.onraven.ca/case-studies/prevsi
+- FoundryLane** — formation, compliance, document, and membership workflows: https://ai.onraven.ca/case-studies/foundrylane
+- WeMoveRD — golf cart marketing, reservations, payments, partner, and fleet operations: https://ai.onraven.ca/case-studies/wemoverd
+- RookieBets — responsible AI sports forecasting platform: https://ai.onraven.ca/case-studies/rookiebets
+- RMJ Transportation — bilingual local SEO and lead-generation website: https://ai.onraven.ca/case-studies/rmj-transportation
+- LedgerPort** — secure, reliable service foundation for a fintech: https://ai.onraven.ca/case-studies/ledgerport
+- GatherStay** — event-driven hotel booking platform with payments and operations tooling: https://ai.onraven.ca/case-studies/gatherstay
+- All case studies: https://ai.onraven.ca/case-studies
 
 (** Fictional client names used per NDA clauses — the work described is real.)
 
