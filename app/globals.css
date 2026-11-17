@@ -1,2 +1,31 @@
 @import '@astryxdesign/core/reset.css';
 @import '@astryxdesign/core/astryx.css';
+
+html {
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+}
+
+.home-section {
+  box-sizing: border-box;
+  width: min(72rem, 100%);
+  margin-inline: auto;
+  padding: 3.5rem 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter {
+    animation: hero-fade 0.5s ease both;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
