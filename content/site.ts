@@ -188,8 +188,8 @@ export const site: Record<Lang, SiteCopy> = {
       "submit": "Send message →",
       "sending": "Sending…",
       "fillAll": "Please fill in all fields.",
-      "success": "Message sent — check your inbox for a confirmation.",
-      "error": "Unable to send — email contact@onraven.ca."
+      "success": "Message sent - check your inbox for a confirmation.",
+      "error": "Unable to send - email contact@onraven.ca."
     },
     "footer": {
       "line1": "Raven Platforms Inc. · Toronto",
@@ -355,8 +355,8 @@ export const site: Record<Lang, SiteCopy> = {
       "submit": "Enviar mensaje →",
       "sending": "Enviando…",
       "fillAll": "Por favor completa todos los campos.",
-      "success": "Mensaje enviado — revisa tu bandeja de entrada.",
-      "error": "No se pudo enviar — escríbenos a contact@onraven.ca."
+      "success": "Mensaje enviado - revisa tu bandeja de entrada.",
+      "error": "No se pudo enviar - escríbenos a contact@onraven.ca."
     },
     "footer": {
       "line1": "Raven Platforms Inc. · Toronto",

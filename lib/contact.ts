@@ -6,8 +6,22 @@ export function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;');
 }
 
+const MAX_EMAIL_LENGTH = 254;
+
 export function isValidEmail(email: string): boolean {
+  if (email.length > MAX_EMAIL_LENGTH) return false;
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// No Origin is same-origin or a non-browser client. A set allowlist rejects every other mismatch.
+export function isAllowedContactOrigin(
+  origin: string,
+  allowedOrigin: string | undefined,
+  serverOrigin: string,
+): boolean {
+  if (!allowedOrigin) return true;
+  if (!origin || origin === serverOrigin) return true;
+  return origin === allowedOrigin;
 }
 
 export function parseContactBody(body: unknown):

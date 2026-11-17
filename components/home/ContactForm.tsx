@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@astryxdesign/core/Button';
 import { Heading } from '@astryxdesign/core/Heading';
+import { Link } from '@astryxdesign/core/Link';
 import { Text } from '@astryxdesign/core/Text';
 import { TextArea } from '@astryxdesign/core/TextArea';
 import { TextInput } from '@astryxdesign/core/TextInput';
@@ -44,6 +45,8 @@ export function ContactForm() {
     }
   }
 
+  const isSending = status === 'sending';
+
   const statusText =
     status === 'sending'
       ? copy.contact.sending
@@ -59,6 +62,11 @@ export function ContactForm() {
     <VStack as="section" id="contact" className="home-section" gap={2}>
       <Heading level={2}>{copy.contact.title}</Heading>
       <Text as="p">{copy.contact.description}</Text>
+      <Text as="p">
+        <Link href="mailto:contact@onraven.ca" isStandalone>
+          contact@onraven.ca
+        </Link>
+      </Text>
       <form onSubmit={onSubmit}>
         <VStack gap={2}>
           <TextInput
@@ -69,6 +77,7 @@ export function ContactForm() {
             htmlName="name"
             autoComplete="name"
             isRequired
+            isDisabled={isSending}
             width="100%"
           />
           <TextInput
@@ -80,6 +89,7 @@ export function ContactForm() {
             htmlName="email"
             autoComplete="email"
             isRequired
+            isDisabled={isSending}
             width="100%"
           />
           <TextArea
@@ -89,13 +99,14 @@ export function ContactForm() {
             placeholder={copy.contact.msgPh}
             htmlName="message"
             isRequired
+            isDisabled={isSending}
             width="100%"
           />
           <Button
             label={copy.contact.submit}
             type="submit"
             variant="primary"
-            isDisabled={status === 'sending'}
+            isDisabled={isSending}
           />
           {statusText ? (
             <Text as="p" role="status">

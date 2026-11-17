@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { escapeHtml, parseContactBody } from '../../../lib/contact';
+import { escapeHtml, isAllowedContactOrigin, parseContactBody } from '../../../lib/contact';
 
 const FROM = 'Raven Platforms <corporate@email.onraven.com>';
 const NOTIFY_TO = 'andres@onraven.ca';
@@ -39,14 +39,27 @@ async function sendEmail(apiKey: string, payload: Record<string, unknown>) {
   return data;
 }
 
-export function OPTIONS(req: Request) {
+function originDecision(req: Request) {
   const origin = req.headers.get('origin') || '';
-  return new NextResponse(null, { status: 204, headers: corsHeaders(origin) });
+  const serverOrigin = new URL(req.url).origin;
+  const headers = corsHeaders(origin);
+  const allowed = isAllowedContactOrigin(origin, process.env.ALLOWED_ORIGIN, serverOrigin);
+  return { headers, allowed };
+}
+
+export function OPTIONS(req: Request) {
+  const { headers, allowed } = originDecision(req);
+  if (!allowed) {
+    return NextResponse.json({ error: 'Origin not allowed.' }, { status: 403, headers });
+  }
+  return new NextResponse(null, { status: 204, headers });
 }
 
 export async function POST(req: Request) {
-  const origin = req.headers.get('origin') || '';
-  const headers = corsHeaders(origin);
+  const { headers, allowed } = originDecision(req);
+  if (!allowed) {
+    return NextResponse.json({ error: 'Origin not allowed.' }, { status: 403, headers });
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {

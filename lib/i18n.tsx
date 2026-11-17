@@ -21,6 +21,10 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     setLangState(resolveLang(params.get('lang')));
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = lang === 'es' ? 'es-CA' : 'en-CA';
+  }, [lang]);
+
   const setLang = useCallback((next: Lang) => {
     setLangState(next);
     const url = new URL(window.location.href);
