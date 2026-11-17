@@ -212,57 +212,7 @@
     },
     {
       "@type": "FAQPage",
-      "@id": "https://ai.onraven.ca/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What does Raven Platforms do?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Raven Platforms Inc. is a Toronto-based digital product studio that designs and builds custom websites, web applications, mobile apps, e-commerce stores, and automation systems for businesses across North America and the Caribbean."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Where is Raven Platforms located?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Raven Platforms Inc. is registered in Toronto, Ontario, Canada, and serves clients across Canada, the United States, and the Caribbean."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What services does Raven Platforms offer?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Services include custom websites, web apps and SaaS platforms, e-commerce, iOS and Android mobile apps, SEO and performance optimization, branding and design, automation and integrations, and ongoing maintenance and support."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I contact Raven Platforms?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You can reach Raven Platforms at contact@onraven.ca or through the contact form on this website. The team typically replies within one business day."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Who does Raven Platforms work with?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Raven Platforms works with ambitious businesses across industries including transportation, real estate, hospitality, automotive, healthcare, and technology startups."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does Raven Platforms take on audits, DevOps, or freelance projects?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Alongside full product builds, Raven Platforms takes on technical audits, DevOps and cloud infrastructure work, and focused freelance or fractional engagements - in Toronto or fully remote."
-          }
-        }
-      ]
+      "@id": "https://ai.onraven.ca/#faq"
     }
   ]
 }

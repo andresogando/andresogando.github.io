@@ -1,5 +1,7 @@
 import type { CaseStudy } from '../content/case-studies';
+import { site } from '../content/site';
 import homeGraphJson from '../content/home-graph.json';
+import { splitFaqAnswer } from './faq-answer';
 
 export const SITE_ORIGIN = 'https://ai.onraven.ca';
 
@@ -10,7 +12,27 @@ export const ogImage = {
   alt: 'Raven Platforms, mission-control hero with wireframe planet over a starfield',
 };
 
-export const homeGraph = homeGraphJson;
+function faqAnswerText(answerHtml: string) {
+  const parts = splitFaqAnswer(answerHtml);
+  if (!parts.label) return parts.before;
+  return `${parts.before}${parts.label}${parts.after ?? ''}`;
+}
+
+const faqMainEntity = site.en.faq.items.map((item) => ({
+  '@type': 'Question' as const,
+  name: item.question,
+  acceptedAnswer: {
+    '@type': 'Answer' as const,
+    text: faqAnswerText(item.answerHtml),
+  },
+}));
+
+export const homeGraph = {
+  ...homeGraphJson,
+  '@graph': homeGraphJson['@graph'].map((node) =>
+    node['@type'] === 'FAQPage' ? { ...node, mainEntity: faqMainEntity } : node,
+  ),
+};
 
 export function articleJsonLd(study: Pick<CaseStudy, 'slug' | 'title' | 'summary' | 'tags'>) {
   return {

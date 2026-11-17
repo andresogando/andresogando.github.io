@@ -21,22 +21,24 @@ export async function generateMetadata({
   const study = getCaseStudy(slug);
   if (!study) return {};
   const url = `/case-studies/${study.slug}`;
+  const socialTitle = `${study.title} | Raven Platforms`;
   return {
     title: study.title,
     description: study.summary,
+    keywords: study.tags,
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
       siteName: 'Raven Platforms Inc.',
       locale: 'en_CA',
-      title: study.title,
+      title: socialTitle,
       description: study.summary,
       url,
       images: [ogImage],
     },
     twitter: {
       card: 'summary_large_image',
-      title: study.title,
+      title: socialTitle,
       description: study.summary,
       images: [{ url: ogImage.url, alt: ogImage.alt }],
     },
