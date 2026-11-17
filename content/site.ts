@@ -175,7 +175,7 @@ export const site: Record<Lang, SiteCopy> = {
         },
         {
           "question": "Do you take on audits, DevOps or freelance projects?",
-          "answerHtml": "Yes — alongside full product builds we take on technical audits, DevOps and cloud infrastructure, and focused freelance engagements, in Toronto or fully remote."
+          "answerHtml": "Yes, alongside full product builds we take on technical audits, DevOps and cloud infrastructure, and focused freelance engagements, in Toronto or fully remote."
         }
       ]
     },
@@ -342,7 +342,7 @@ export const site: Record<Lang, SiteCopy> = {
         },
         {
           "question": "¿Hacen auditorías, DevOps o proyectos freelance?",
-          "answerHtml": "Sí — además de proyectos completos, realizamos auditorías técnicas, trabajo de DevOps e infraestructura cloud, y colaboraciones freelance puntuales, en Toronto o 100% remoto."
+          "answerHtml": "Sí, además de proyectos completos, realizamos auditorías técnicas, trabajo de DevOps e infraestructura cloud, y colaboraciones freelance puntuales, en Toronto o 100% remoto."
         }
       ]
     },

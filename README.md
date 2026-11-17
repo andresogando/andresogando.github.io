@@ -1,53 +1,50 @@
 # Raven Platforms
 
-Static marketing site with a Resend-powered contact form.
-
-## Contact form setup
-
-The API key must stay server-side. Deploy this repo to **Vercel** (recommended) so `/api/contact` runs alongside the site.
-
-1. Push the repo to GitHub.
-2. Import the project in [Vercel](https://vercel.com).
-3. Add an environment variable:
-   - `RESEND_API_KEY` — your Resend API key
-   - `ALLOWED_ORIGIN` (optional) — e.g. `https://your-domain.com` to restrict CORS
-4. Deploy.
-
-Emails sent on submit:
-- **To you:** `andres@onraven.ca` with the enquiry details
-- **To the submitter:** receipt confirmation from `corporate@email.onraven.com`
-
-Ensure `corporate@email.onraven.com` is verified in your Resend domain settings.
-
-## GitHub Pages only
-
-GitHub Pages cannot run the API. Either:
-
-- Deploy the full site on Vercel instead, or
-- Deploy only the `api/` folder on Vercel and add this to `index.html` `<head>`:
-
-```html
-<meta name="contact-api" content="https://your-api.vercel.app/api/contact">
-```
+Next.js marketing site. The UI uses Astryx (`@astryxdesign/core` and the neutral theme). The contact form sends mail through Resend from a Next.js route.
 
 ## Local development
 
 ```bash
+npm install
 cp .env.example .env.local
-# Add RESEND_API_KEY to .env.local
-npx vercel dev
 ```
 
-Open the URL Vercel prints (usually `http://localhost:3000`).
+Set `RESEND_API_KEY` in `.env.local`. Optional: set `ALLOWED_ORIGIN` (for example `https://ai.onraven.ca`) so `/api/contact` only accepts that browser origin.
 
-## SEO & AI search
+```bash
+npm run dev
+```
 
-Static files included for discoverability:
+Open http://localhost:3000.
 
-- `robots.txt` — crawl rules + sitemap reference (AI bots allowed)
-- `sitemap.xml` — URL list for search engines
-- `llms.txt` — plain-text summary for AI assistants and answer engines
-- `site.webmanifest` — PWA metadata
+`npm test` runs the contact and JSON-LD checks. `npm run build` produces the production build.
+
+## Contact form
+
+The API key stays on the server. Deploy this app on Vercel and set the same environment variables in the project settings. `/api/contact` is a Next.js route handler, so it does not need a separate API project.
+
+Emails sent on submit:
+
+- To you: `andres@onraven.ca` with the enquiry details
+- To the submitter: a receipt from `corporate@email.onraven.com`
+
+`corporate@email.onraven.com` must be a verified sender in Resend.
+
+## Deploy
+
+1. Push the repo to GitHub.
+2. Import the project in [Vercel](https://vercel.com).
+3. Add `RESEND_API_KEY`. Add `ALLOWED_ORIGIN` if you want to lock CORS.
+4. Deploy.
+
+## SEO
+
+Files in `public/`:
+
+- `robots.txt`: crawl rules and the sitemap reference
+- `sitemap.xml`: URL list
+- `llms.txt`: plain-text summary for answer engines
+- `site.webmanifest`: web app metadata
 
 Production hosts: [https://ai.onraven.ca](https://ai.onraven.ca) (canonical) and [https://ai.onraven.com](https://ai.onraven.com).
 
